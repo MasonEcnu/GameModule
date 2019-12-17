@@ -21,6 +21,9 @@ public class DefaultTaskChecker implements TaskChecker {
     return instance;
   }
 
+  private DefaultTaskChecker() {
+  }
+
   @Override
   public void check(TaskInfo task) {
     throw new RuntimeException("程序不应该走到DefaultTaskChecker");

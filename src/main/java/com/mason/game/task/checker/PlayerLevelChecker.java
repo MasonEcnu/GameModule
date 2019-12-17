@@ -22,6 +22,9 @@ public class PlayerLevelChecker implements TaskChecker {
     return instance;
   }
 
+  private PlayerLevelChecker() {
+  }
+
   @Override
   public void check(TaskInfo task) {
     long oldProcess = task.getProcess();

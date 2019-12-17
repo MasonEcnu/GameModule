@@ -22,6 +22,9 @@ public class BuildingLevelChecker implements TaskChecker {
     return instance;
   }
 
+  private BuildingLevelChecker() {
+  }
+
   @Override
   public void check(TaskInfo task) {
     long oldProcess = task.getProcess();

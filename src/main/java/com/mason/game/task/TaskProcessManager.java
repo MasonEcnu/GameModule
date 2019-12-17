@@ -30,6 +30,9 @@ public class TaskProcessManager {
     return instance;
   }
 
+  private TaskProcessManager() {
+  }
+
   private GameTaskManager gameTaskManager = GameTaskManager.getInstance();
 
   void addTaskProgress(TaskType taskType) {

@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 public class ExtensionTaskService implements TaskManager {
 
   private static ExtensionTaskService instance;
+
   static {
     try {
       instance = new ExtensionTaskService();
@@ -22,6 +23,9 @@ public class ExtensionTaskService implements TaskManager {
 
   public static ExtensionTaskService getInstance() {
     return instance;
+  }
+
+  private ExtensionTaskService() {
   }
 
   private ExtensionTaskDC extensionTaskDC = new ExtensionTaskDC();

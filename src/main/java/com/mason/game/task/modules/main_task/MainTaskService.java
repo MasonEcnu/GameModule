@@ -1,8 +1,5 @@
 package com.mason.game.task.modules.main_task;
 
-import com.mason.game.task.GameTaskManager;
-import com.mason.game.task.TaskServiceManager;
-import com.mason.game.task.checker.TaskChecker;
 import com.mason.game.task.manager.TaskInfo;
 import com.mason.game.task.manager.TaskManager;
 
@@ -15,6 +12,7 @@ import java.util.function.Consumer;
 public class MainTaskService implements TaskManager {
 
   private static MainTaskService instance;
+
   static {
     try {
       instance = new MainTaskService();
@@ -28,6 +26,9 @@ public class MainTaskService implements TaskManager {
   }
 
   private MainTaskDC mainTaskDC = new MainTaskDC();
+
+  private MainTaskService() {
+  }
 
   @Override
   public void loadAllTasks(Consumer<Collection<TaskInfo>> callback) {
