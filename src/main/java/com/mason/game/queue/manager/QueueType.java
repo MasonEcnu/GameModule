@@ -1,7 +1,9 @@
 package com.mason.game.queue.manager;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by mwu on 2019/12/17
@@ -22,5 +24,9 @@ public enum QueueType {
   public static QueueType valueOf(int type) {
     Optional<QueueType> result = Arrays.stream(values()).filter(it -> it.type == type).findFirst();
     return result.orElse(QueueType.DEFAULT);
+  }
+
+  public static List<QueueType> valuesExceptZero() {
+    return Arrays.stream(values()).filter(it -> it != DEFAULT).collect(Collectors.toList());
   }
 }

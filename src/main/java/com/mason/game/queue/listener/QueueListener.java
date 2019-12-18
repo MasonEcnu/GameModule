@@ -1,6 +1,6 @@
 package com.mason.game.queue.listener;
 
-import com.mason.game.queue.manager.Queue;
+import com.mason.game.queue.manager.GameQueue;
 
 /**
  * Created by mwu on 2019/12/17
@@ -12,12 +12,12 @@ public interface QueueListener {
    *
    * @param queue 队列对象
    */
-  void onQueueFinished(Queue queue);
+  void onQueueFinished(GameQueue queue);
 
   /**
    * 当队列取消时触发
    *
    * @param queue 队列对象
    */
-  void onQueueCancel(Queue queue);
+  void onQueueCancel(GameQueue queue);
 }
