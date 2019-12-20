@@ -78,8 +78,7 @@ public class QueueManager {
     queues.remove(queue);
     queues.add(queue);
     checkMaxQueueId();
-    System.out.format("New Add queue:%s", queue);
-    System.out.println();
+    System.out.format("New Add queue:%s\n", queue);
   }
 
   private void deleteGameQueue(GameQueue queue) {

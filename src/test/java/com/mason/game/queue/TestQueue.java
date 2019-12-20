@@ -13,7 +13,7 @@ import java.util.Random;
  * Created by mwu on 2019/12/18
  * 测试队列系统
  */
-public class Test {
+public class TestQueue {
   public static void main(String[] args) throws Exception {
     QueueManager manager = new QueueManager();
     Random random = new Random();
