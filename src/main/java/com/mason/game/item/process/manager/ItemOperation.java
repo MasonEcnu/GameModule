@@ -1,5 +1,6 @@
 package com.mason.game.item.process.manager;
 
+import com.mason.game.item.ItemManager;
 import com.mason.game.item.manager.Item;
 
 /**
@@ -7,5 +8,5 @@ import com.mason.game.item.manager.Item;
  */
 public interface ItemOperation {
 
-  void execute(ItemOperateType operateType, Item item, int operateParam);
+  void execute(ItemManager manager, Item item, int operateParam);
 }

@@ -29,4 +29,7 @@ public enum ItemType {
   public static List<ItemType> valuesExceptZero() {
     return Arrays.stream(values()).filter(it -> it != DEFAULT).collect(Collectors.toList());
   }
-}
+
+  public int getType() {
+    return type;
+  }}

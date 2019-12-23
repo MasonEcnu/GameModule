@@ -95,8 +95,13 @@ public class Item implements Serializable {
   }
 
   public boolean isExpired() {
-    long nowSeconds = Instant.now().getEpochSecond();
-    return nowSeconds - (obtainTime + getLastTime()) >= 0;
+    int lastTime = getLastTime();
+    if (lastTime > 0) {
+      long nowSeconds = Instant.now().getEpochSecond();
+      return nowSeconds - (obtainTime + getLastTime()) >= 0;
+    } else {
+      return false;
+    }
   }
 
   @Override
@@ -113,7 +118,11 @@ public class Item implements Serializable {
 
   @Override
   public boolean equals(Object obj) {
-    Item other = (Item) obj;
-    return this.itemId == other.itemId;
+    if (obj.getClass().getSimpleName().equals(Item.class.getSimpleName())) {
+      Item other = (Item) obj;
+      return this.itemId == other.itemId;
+    } else {
+      return false;
+    }
   }
 }

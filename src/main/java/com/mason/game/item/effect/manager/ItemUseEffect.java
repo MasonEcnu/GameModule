@@ -22,7 +22,6 @@ public enum ItemUseEffect {
     this.effect = effect;
   }
 
-
   public static ItemUseEffect valueOf(int effect) {
     Optional<ItemUseEffect> result = Arrays.stream(values()).filter(it -> it.effect == effect).findFirst();
     return result.orElse(ItemUseEffect.DEFAULT);

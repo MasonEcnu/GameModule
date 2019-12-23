@@ -1,7 +1,11 @@
 package com.mason.game.item;
 
 import com.mason.game.item.effect.manager.InterfaceItemUseEffect;
+import com.mason.game.item.effect.manager.ItemUseEffect;
 import com.mason.game.item.manager.Item;
+import com.mason.game.item.manager.ItemType;
+import com.mason.game.item.process.manager.ItemOperateType;
+import com.mason.game.item.process.manager.ItemOperation;
 
 import java.util.*;
 
@@ -26,8 +30,10 @@ public class ItemManager {
   };
 
   private ItemEffectManager effectManager = ItemEffectManager.getInstance();
+  private ItemOperateManager operateManager = ItemOperateManager.getInstance();
 
   ItemManager() {
+    initSomeItems();
     checkMaxQueueId();
     startTimer();
   }
@@ -39,8 +45,22 @@ public class ItemManager {
 
   ItemManager(List<Item> items) {
     this.items = items;
+    initSomeItems();
     checkMaxQueueId();
     startTimer();
+  }
+
+  private void initSomeItems() {
+    for (int i = 0; i < 10; i++) {
+      List<ItemType> types = ItemType.valuesExceptZero();
+      Collections.shuffle(types);
+      ItemType type = types.get(0);
+
+      List<ItemUseEffect> useEffect = ItemUseEffect.valuesExceptZero();
+      Collections.shuffle(types);
+      ItemUseEffect effect = useEffect.get(0);
+      addItem(type.getType(), effect.getEffect());
+    }
   }
 
   private void startTimer() {
@@ -65,6 +85,26 @@ public class ItemManager {
     addItem(item);
   }
 
+  void addItem(int itemType, int useEffect, long obtainTime, int lastTime, boolean saleable) {
+    Item item = new Item(nextItemId(), itemType, useEffect, obtainTime, lastTime, saleable);
+    addItem(item);
+  }
+
+  void addItem(int itemType, int useEffect, long obtainTime, int lastTime) {
+    Item item = new Item(nextItemId(), itemType, useEffect, obtainTime, lastTime);
+    addItem(item);
+  }
+
+  void addItem(int itemType, int useEffect, long obtainTime) {
+    Item item = new Item(nextItemId(), itemType, useEffect, obtainTime);
+    addItem(item);
+  }
+
+  void addItem(int itemType, int useEffect) {
+    Item item = new Item(nextItemId(), itemType, useEffect);
+    addItem(item);
+  }
+
   private int nextItemId() {
     maxItemId++;
     return maxItemId;
@@ -81,18 +121,55 @@ public class ItemManager {
     items.remove(item);
   }
 
-  public void operateItem(Item item) {
-
+  public List<Item> getItems() {
+    return items;
   }
 
-  public void useItem(Item item) {
+  public void operateItem(ItemOperateType operateType, Item item) {
+    operateItem(operateType, item, 1);
+  }
+
+  public void operateItem(ItemOperateType operateType, Item item, int operateParam) {
+    if (!items.contains(item)) {
+      System.out.format("Item not exist:%s\n", item);
+    } else {
+      ItemOperation operation = operateManager.ITEM_OPERATE_PROCESS_MAP.get(operateType);
+      if (operation != null) {
+        operation.execute(this, item, operateParam);
+      }
+    }
+  }
+
+  public void useItem(Item item, int operateParam) {
     if (item.getCount() <= 0) {
       deleteItem(item);
     } else {
-      InterfaceItemUseEffect itemUseEffect = effectManager.ITEM_USE_EFFECT_MAP.get(item.getUseEffect());
-      itemUseEffect.check(item);
-      itemUseEffect.effect(item);
+      for (int i = 0; i < operateParam; i++) {
+        int count = item.getCount();
+        if (count > 0) {
+          InterfaceItemUseEffect itemUseEffect = effectManager.ITEM_USE_EFFECT_MAP.get(item.getUseEffect());
+          itemUseEffect.check(item);
+          itemUseEffect.effect(item);
+          count--;
+          item.setCount(count);
+        } else {
+          deleteItem(item);
+        }
+      }
+    }
+  }
+
+  public void delItem(Item item) {
+    deleteItem(item);
+  }
+
+  public void sellItem(Item item, int operateParam) {
+    int count = item.getCount();
+    int diff = count - operateParam;
+    if (diff <= 0) {
       deleteItem(item);
+    } else {
+      item.setCount(diff);
     }
   }
 
