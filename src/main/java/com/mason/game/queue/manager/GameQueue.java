@@ -86,7 +86,10 @@ public class GameQueue {
 
   @Override
   public boolean equals(Object obj) {
-    return super.equals(obj);
+    if (obj instanceof GameQueue) {
+      return ((GameQueue) obj).queueId == this.queueId;
+    }
+    return false;
   }
 
   public static void main(String[] args) {

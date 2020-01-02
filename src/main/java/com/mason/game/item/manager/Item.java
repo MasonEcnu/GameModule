@@ -118,9 +118,8 @@ public class Item implements Serializable {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj.getClass().getSimpleName().equals(Item.class.getSimpleName())) {
-      Item other = (Item) obj;
-      return this.itemId == other.itemId;
+    if (obj instanceof Item) {
+      return this.itemId == ((Item) obj).itemId;
     } else {
       return false;
     }

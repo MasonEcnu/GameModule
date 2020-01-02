@@ -12,4 +12,15 @@ public class ExceptionUtil {
       throw new RuntimeException(JSON.toJSONString(args));
     }
   }
+
+  public static <T> T requireNotNull(T obj, String... args) {
+    if (obj == null) {
+      throw new RuntimeException(JSON.toJSONString(args));
+    }
+    return obj;
+  }
+
+  public static void main(String[] args) {
+    System.out.println(ExceptionUtil.requireNotNull(1));
+  }
 }

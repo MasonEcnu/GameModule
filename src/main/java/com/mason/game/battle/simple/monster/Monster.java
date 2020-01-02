@@ -42,27 +42,23 @@ public class Monster {
     switch (career) {
       case WARRIOR:
         skillCD = BattleConstants.WARRIOR_SKILL_CD;
-        hp = getRandomRange(BattleConstants.WARRIOR_MAX_HP_RANGE);
-        speed = getRandomRange(BattleConstants.WARRIOR_SPEED_RANGE);
+        hp = RandomUtil.between(BattleConstants.WARRIOR_MAX_HP_RANGE);
+        speed = RandomUtil.between(BattleConstants.WARRIOR_SPEED_RANGE);
         attackRange = BattleConstants.WARRIOR_ATTACK_RANGE;
         break;
       case MAGICIAN:
         skillCD = BattleConstants.MAGICIAN_SKILL_CD;
-        hp = getRandomRange(BattleConstants.MAGICIAN_MAX_HP_RANGE);
-        speed = getRandomRange(BattleConstants.MAGICIAN_SPEED_RANGE);
+        hp = RandomUtil.between(BattleConstants.MAGICIAN_MAX_HP_RANGE);
+        speed = RandomUtil.between(BattleConstants.MAGICIAN_SPEED_RANGE);
         attackRange = BattleConstants.MAGICIAN_ATTACK_RANGE;
         break;
       case PRIEST:
         skillCD = BattleConstants.PRIEST_SKILL_CD;
-        hp = getRandomRange(BattleConstants.PRIEST_MAX_HP_RANGE);
-        speed = getRandomRange(BattleConstants.PRIEST_SPEED_RANGE);
+        hp = RandomUtil.between(BattleConstants.PRIEST_MAX_HP_RANGE);
+        speed = RandomUtil.between(BattleConstants.PRIEST_SPEED_RANGE);
         attackRange = BattleConstants.PRIEST_ATTACK_RANGE;
         break;
     }
-  }
-
-  private int getRandomRange(Pair<Integer> range) {
-    return RandomUtil.between(range.getFirst(), range.getSecond());
   }
 
   /**
@@ -78,8 +74,8 @@ public class Monster {
 
     if (attacker.isDead() || defender.isDead()) return;
     // 计算攻击力
-    int attackerAttackPot = RandomUtil.between(attacker.getAttackRange().getFirst(), attacker.getAttackRange().getSecond());
-    int defenderAttackPot = RandomUtil.between(defender.getAttackRange().getFirst(), defender.getAttackRange().getSecond());
+    int attackerAttackPot = RandomUtil.between(attacker.getAttackRange());
+    int defenderAttackPot = RandomUtil.between(defender.getAttackRange());
     // 随机技能
     SkillType attackerSkill = randomChooseSkill(attacker);
     SkillType defenderSkill = randomChooseSkill(defender);
