@@ -17,6 +17,13 @@ public class RandomUtil {
     return ThreadLocalRandom.current().nextInt(max - min + 1) + min;
   }
 
+  public static double between(double min, double max) {
+    if (min > max) {
+      return min;
+    }
+    return ThreadLocalRandom.current().nextDouble(max - min + 1) + min;
+  }
+
   public static int between(Pair<Integer> range) {
     return between(range.getFirst(), range.getSecond());
   }

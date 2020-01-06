@@ -43,6 +43,10 @@ public class ActivityManager {
     if (!runStatus) {
       start();
     }
+    if (result.isEmpty()) {
+      System.out.println("初始化数据出错了，一个player都没有。。。");
+      return;
+    }
     result.forEach((player, satisfiedConfigs) -> {
       if (!satisfiedConfigs.isEmpty()) {
         System.out.println(player);
