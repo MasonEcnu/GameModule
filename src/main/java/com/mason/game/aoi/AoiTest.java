@@ -1,6 +1,7 @@
 package com.mason.game.aoi;
 
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.mason.game.aoi.Constants.*;
 
@@ -9,7 +10,6 @@ import static com.mason.game.aoi.Constants.*;
  * https://github.com/yyhero/gridview/blob/24cfbae6c2d739b8c9a3ea082fce789981195e12/aoi_test.go#L19
  */
 public class AoiTest {
-
 
   public static void main(String[] args) {
     // 4000*4000的大地图
@@ -28,8 +28,11 @@ public class AoiTest {
       mapGrids.enter(cId, posX, posY);
     }
 
+    System.out.println("Init 20000 Creatures over");
+
     // all creatures move one time
     long start = System.currentTimeMillis();
+    AtomicInteger index = new AtomicInteger();
     creatures.forEach((cid, creature) -> {
       int oldPosX = creature.getPosX();
       int oldPosY = creature.getPosY();
@@ -43,6 +46,7 @@ public class AoiTest {
           break;
         }
       }
+      System.out.println(index.getAndIncrement());
       mapGrids.move(oldPosX, oldPosY, posX, posY, cid);
     });
     long end = System.currentTimeMillis();
