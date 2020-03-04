@@ -14,7 +14,7 @@ class Tools {
   }
 
   static int random(int start, int end) {
-    return start + random.nextInt(end);
+    return random.nextInt((end - start) + 1) + start;
   }
 
   static String generateCreateName(int i) {

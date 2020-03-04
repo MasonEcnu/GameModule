@@ -1,7 +1,6 @@
 package com.mason.game.aoi;
 
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.mason.game.aoi.Constants.*;
 
@@ -16,9 +15,9 @@ public class AoiTest {
     // 20*20的格子大小
     GridManager mapGrids = new GridManager(MAP_MIN_WITH, MAP_MAX_WITH, MAP_MIN_HEIGHT, MAP_MAX_HEIGHT, GRID_WITH, GRID_HEIGHT);
 
-    // 初始化20000个player
+    // 初始化MAX_CREATURE_COUNT个player
     HashMap<String, Creature> creatures = new HashMap<>();
-    for (int i = 1; i <= 20000; i++) {
+    for (int i = 1; i <= MAX_CREATURE_COUNT; i++) {
       int posX = Tools.random(1, MAP_MAX_WITH);
       int posY = Tools.random(1, MAP_MAX_HEIGHT);
       String cId = Tools.generateCreateName(i);
@@ -27,45 +26,40 @@ public class AoiTest {
       mapGrids.enter(cId, posX, posY);
     }
 
-    System.out.println("Init 20000 Creatures over");
+    System.out.println("Init MAX_CREATURE_COUNT Creatures over");
 
     // all creatures move one time
     long start = System.currentTimeMillis();
-    AtomicInteger index = new AtomicInteger();
-    creatures.forEach((cid, creature) -> {
-      move(mapGrids, creature);
-      index.getAndIncrement();
-      System.out.println("start move:" + index.get());
-      System.out.println("end move:" + index.get());
-    });
+    creatures.forEach((cid, creature) -> move(mapGrids, creature));
     long end = System.currentTimeMillis();
-    System.out.format("All creatures move one time used %s seconds", (end - start) / SECOND_TO_MILLIS);
+    System.out.format("All creatures move one time used %s seconds\n", (end - start) / SECOND_TO_MILLIS);
 
-    // one creature move 20000 times
+    // one creature move MAX_CREATURE_COUNT times
     start = System.currentTimeMillis();
-    int ranCid = Tools.random(1, 20000);
+    int ranCid = Tools.random(1, MAX_CREATURE_COUNT);
     Creature creature = creatures.get(Tools.generateCreateName(ranCid));
-    for (int i = 1; i <= 20000; i++) {
-      MoveResult moveResult = move(mapGrids, creature);
-      System.out.println(moveResult);
+    for (int i = 1; i <= MAX_CREATURE_COUNT; i++) {
+      move(mapGrids, creature);
     }
     end = System.currentTimeMillis();
-    System.out.format("One creature move 20000 time used %s seconds", (end - start) / SECOND_TO_MILLIS);
+    System.out.format("One creature move %s time used %s seconds\n", MAX_CREATURE_COUNT, (end - start) / SECOND_TO_MILLIS);
   }
 
   private static MoveResult move(GridManager mapGrids, Creature creature) {
+//    System.out.println("================================================================================");
+//    System.out.format("%s move from (%s, %s)\n", creature.getId(), creature.getPosX(), creature.getPosY());
     int oldPosX = creature.getPosX();
     int oldPosY = creature.getPosY();
-    int posX, posY;
     while (true) {
-      posX = oldPosX + Tools.random(-10, 10);
-      posY = oldPosY + Tools.random(-10, 10);
+      int posX = oldPosX + Tools.random(-10, 10);
+      int posY = oldPosY + Tools.random(-10, 10);
       if (mapGrids.isPosValid(posX, posY)) {
         creature.setPosX(posX);
         creature.setPosY(posY);
         break;
       }
     }
-    return mapGrids.move(oldPosX, oldPosY, posX, posY, creature.getId());
+//    System.out.format("%s move to (%s, %s)\n", creature.getId(), creature.getPosX(), creature.getPosY());
+    return mapGrids.move(oldPosX, oldPosY, creature.getPosX(), creature.getPosY(), creature.getId());
   }
 }

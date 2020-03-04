@@ -5,6 +5,7 @@ package com.mason.game.aoi;
  */
 class Constants {
   static final int NOTHING = Integer.MIN_VALUE;
+  static final int MAX_CREATURE_COUNT = 100000;
 
   static final int MAP_MIN_WITH = 0;
   static final int MAP_MAX_WITH = 4000;
