@@ -1,10 +1,10 @@
-package com.mason.game.aoi;
+package com.mason.game.aoi.ordinary;
 
 import com.alibaba.fastjson.JSON;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.mason.game.aoi.Constants.NOTHING;
+import static com.mason.game.aoi.ordinary.Constants.NOTHING;
 
 /**
  * Created by mwu on 2020/3/3

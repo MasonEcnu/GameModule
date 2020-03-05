@@ -1,4 +1,4 @@
-package com.mason.game.aoi;
+package com.mason.game.aoi.ordinary;
 
 /**
  * Created by mwu on 2020/3/3

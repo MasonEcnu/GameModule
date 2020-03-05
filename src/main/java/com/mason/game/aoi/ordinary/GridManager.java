@@ -1,4 +1,4 @@
-package com.mason.game.aoi;
+package com.mason.game.aoi.ordinary;
 
 import com.mason.game.constans.Pair;
 

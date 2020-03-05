@@ -1,8 +1,8 @@
-package com.mason.game.aoi;
+package com.mason.game.aoi.ordinary;
 
 import java.util.HashMap;
 
-import static com.mason.game.aoi.Constants.*;
+import static com.mason.game.aoi.ordinary.Constants.*;
 
 /**
  * Created by mwu on 2020/3/3
