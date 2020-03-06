@@ -12,9 +12,9 @@ public class Node implements Comparable<Node> {
   public int y;
   public boolean walkable;
   public Node parent = null;
-  public int g = 0;
-  public int h = 0;
-  public int f = 0;
+  public double g = 0;
+  public double h = 0;
+  public double f = 0;
   public boolean closed = false;
   public boolean opened = false;
 
@@ -49,6 +49,6 @@ public class Node implements Comparable<Node> {
 
   @Override
   public int compareTo(@NotNull Node o) {
-    return Integer.compare(f, o.f);
+    return Double.compare(f, o.f);
   }
 }

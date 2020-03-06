@@ -5,5 +5,5 @@ package com.mason.game.findpath.core.heuristic;
  */
 @FunctionalInterface
 public interface HeuristicFunction {
-  int calcDistance(int dx, int dy);
+  double calcDistance(int dx, int dy);
 }

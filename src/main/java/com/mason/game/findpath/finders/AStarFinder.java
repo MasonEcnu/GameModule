@@ -89,9 +89,7 @@ public class AStarFinder {
 
       // get neigbours of the current node
       List<Node> neighbors = grid.getNeighbors(node, diagonalMovement);
-      for (int i = 0, l = neighbors.size(); i < l; ++i) {
-        Node neighbor = neighbors.get(i);
-
+      for (Node neighbor : neighbors) {
         if (neighbor.closed) {
           continue;
         }
@@ -101,7 +99,7 @@ public class AStarFinder {
 
         // get the distance between current node and the neighbor
         // and calculate the next g score
-        int ng = (int) (node.g + ((x - node.x == 0 || y - node.y == 0) ? 1 : Math.sqrt(2)));
+        double ng = node.g + ((x - node.x == 0 || y - node.y == 0) ? 1 : Math.sqrt(2));
         // check if the neighbor has not been inspected yet, or
         // can be reached with smaller cost from the current node
         if (!neighbor.opened || ng < neighbor.g) {

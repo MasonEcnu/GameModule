@@ -32,6 +32,7 @@ public class TestFindPath {
     option.allowDiagonal = true;
     option.dontCrossCorners = true;
     option.heuristic = Heuristic.euclidean;
+    option.weight = 1;
     AStarFinder aStarFinder = new AStarFinder(option);
     List<List<Integer>> path = aStarFinder.findPath(startX, startY, endX, endY, grid);
     path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);

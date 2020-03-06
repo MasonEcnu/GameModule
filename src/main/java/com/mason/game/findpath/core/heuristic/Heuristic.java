@@ -13,7 +13,7 @@ public class Heuristic {
    * @param dy Difference in y
    * @return dx + dy
    */
-  public static int manhattan(int dx, int dy) {
+  public static double manhattan(int dx, int dy) {
     return dx + dy;
   }
 
@@ -27,10 +27,10 @@ public class Heuristic {
    * @return sqrt(dx * dx + dy * dy)
    */
   public static double euclidean(int dx, int dy) {
-    return (int) Math.sqrt(dx * dx + dy * dy);
+    return Math.sqrt(dx * dx + dy * dy);
   }
 
-  public static HeuristicFunction euclidean = (dx, dy) -> (int) Math.sqrt(dx * dx + dy * dy);
+  public static HeuristicFunction euclidean = (dx, dy) -> Math.sqrt(dx * dx + dy * dy);
 
   /**
    * Octile distance.
@@ -39,14 +39,14 @@ public class Heuristic {
    * @param dy - Difference in y.
    * @return sqrt(dx * dx + dy * dy) for grids
    */
-  public static int octile(int dx, int dy) {
+  public static double octile(int dx, int dy) {
     double F = Math.sqrt(2);
-    return (int) ((dx < dy) ? F * dx + dy : F * dy + dx);
+    return (dx < dy) ? F * dx + dy : F * dy + dx;
   }
 
   public static HeuristicFunction octile = (dx, dy) -> {
     double F = Math.sqrt(2);
-    return (int) ((dx < dy) ? F * dx + dy : F * dy + dx);
+    return (dx < dy) ? F * dx + dy : F * dy + dx;
   };
 
   /**
@@ -56,13 +56,9 @@ public class Heuristic {
    * @param dy - Difference in y.
    * @return max(dx, dy)
    */
-  public static int chebyshev(int dx, int dy) {
+  public static double chebyshev(int dx, int dy) {
     return Math.max(dx, dy);
   }
 
   public static HeuristicFunction chebyshev = Math::max;
-
-  public static void main(String[] args) {
-    System.out.println(Heuristic.manhattan.calcDistance(1, 2));
-  }
 }
