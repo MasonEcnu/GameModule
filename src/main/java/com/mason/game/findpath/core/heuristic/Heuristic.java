@@ -1,9 +1,10 @@
-package com.mason.game.findpath.core;
+package com.mason.game.findpath.core.heuristic;
 
 /**
  * Created by mwu on 2020/3/5
  */
 public class Heuristic {
+
 
   /**
    * Manhattan distance.
@@ -16,6 +17,8 @@ public class Heuristic {
     return dx + dy;
   }
 
+  public static HeuristicFunction manhattan = (dx, dy) -> dx + dy;
+
   /**
    * Euclidean distance.
    *
@@ -24,9 +27,10 @@ public class Heuristic {
    * @return sqrt(dx * dx + dy * dy)
    */
   public static double euclidean(int dx, int dy) {
-    return Math.sqrt(dx * dx + dy * dy);
+    return (int) Math.sqrt(dx * dx + dy * dy);
   }
 
+  public static HeuristicFunction euclidean = (dx, dy) -> (int) Math.sqrt(dx * dx + dy * dy);
 
   /**
    * Octile distance.
@@ -35,10 +39,15 @@ public class Heuristic {
    * @param dy - Difference in y.
    * @return sqrt(dx * dx + dy * dy) for grids
    */
-  public static double octile(int dx, int dy) {
+  public static int octile(int dx, int dy) {
     double F = Math.sqrt(2);
-    return (dx < dy) ? F * dx + dy : F * dy + dx;
+    return (int) ((dx < dy) ? F * dx + dy : F * dy + dx);
   }
+
+  public static HeuristicFunction octile = (dx, dy) -> {
+    double F = Math.sqrt(2);
+    return (int) ((dx < dy) ? F * dx + dy : F * dy + dx);
+  };
 
   /**
    * Chebyshev distance.
@@ -49,5 +58,11 @@ public class Heuristic {
    */
   public static int chebyshev(int dx, int dy) {
     return Math.max(dx, dy);
+  }
+
+  public static HeuristicFunction chebyshev = Math::max;
+
+  public static void main(String[] args) {
+    System.out.println(Heuristic.manhattan.calcDistance(1, 2));
   }
 }
