@@ -16,43 +16,43 @@ import java.util.Map;
  */
 public class ActivityManager {
 
-  private boolean runStatus = false;
-  private List<ActivityPlayer> players;
-  private List<ActivityConfig> configs;
-  private Map<ActivityPlayer, List<ActivityConfig>> result = new HashMap<>();
+    private boolean runStatus = false;
+    private List<ActivityPlayer> players;
+    private List<ActivityConfig> configs;
+    private Map<ActivityPlayer, List<ActivityConfig>> result = new HashMap<>();
 
-  public ActivityManager() {
-    players = new ActivityPlayerManager().getPlayers();
-    configs = new ActivityConfManager().getConfigs();
-  }
+    public ActivityManager() {
+        players = new ActivityPlayerManager().getPlayers();
+        configs = new ActivityConfManager().getConfigs();
+    }
 
-  public void start() {
-    runStatus = true;
-    for (ActivityPlayer player : players) {
-      List<ActivityConfig> satisfiedConfigs = Lists.newArrayList();
-      for (ActivityConfig config : configs) {
-        if (player.satisfy(config)) {
-          satisfiedConfigs.add(config);
+    public void start() {
+        runStatus = true;
+        for (ActivityPlayer player : players) {
+            List<ActivityConfig> satisfiedConfigs = Lists.newArrayList();
+            for (ActivityConfig config : configs) {
+                if (player.satisfy(config)) {
+                    satisfiedConfigs.add(config);
+                }
+            }
+            result.put(player, satisfiedConfigs);
         }
-      }
-      result.put(player, satisfiedConfigs);
     }
-  }
 
-  public void show() {
-    if (!runStatus) {
-      start();
+    public void show() {
+        if (!runStatus) {
+            start();
+        }
+        if (result.isEmpty()) {
+            System.out.println("初始化数据出错了，一个player都没有。。。");
+            return;
+        }
+        result.forEach((player, satisfiedConfigs) -> {
+            if (!satisfiedConfigs.isEmpty()) {
+                System.out.println(player);
+                satisfiedConfigs.forEach(System.out::println);
+                System.out.println("----------------------------------------------------");
+            }
+        });
     }
-    if (result.isEmpty()) {
-      System.out.println("初始化数据出错了，一个player都没有。。。");
-      return;
-    }
-    result.forEach((player, satisfiedConfigs) -> {
-      if (!satisfiedConfigs.isEmpty()) {
-        System.out.println(player);
-        satisfiedConfigs.forEach(System.out::println);
-        System.out.println("----------------------------------------------------");
-      }
-    });
-  }
 }

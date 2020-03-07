@@ -7,13 +7,13 @@ import com.mason.game.queue.manager.GameQueue;
  */
 public class MarchQueueListener implements QueueListener {
 
-  @Override
-  public void onQueueFinished(GameQueue queue) {
-    System.out.format("MarchQueue:%s finished.\n", queue);
-  }
+    @Override
+    public void onQueueFinished(GameQueue queue) {
+        System.out.format("MarchQueue:%s finished.\n", queue);
+    }
 
-  @Override
-  public void onQueueCancel(GameQueue queue) {
-    System.out.format("MarchQueue:%s canceled.\n", queue);
-  }
+    @Override
+    public void onQueueCancel(GameQueue queue) {
+        System.out.format("MarchQueue:%s canceled.\n", queue);
+    }
 }

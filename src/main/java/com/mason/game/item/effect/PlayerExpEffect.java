@@ -8,13 +8,13 @@ import com.mason.game.item.manager.Item;
  */
 public class PlayerExpEffect implements InterfaceItemUseEffect {
 
-  @Override
-  public void check(Item item) {
-    System.out.format("PlayerExpEffect--check--%s\n", item.getItemId());
-  }
+    @Override
+    public void check(Item item) {
+        System.out.format("PlayerExpEffect--check--%s\n", item.getItemId());
+    }
 
-  @Override
-  public void effect(Item item) {
-    System.out.format("PlayerExpEffect--effect--%s\n", item.getItemId());
-  }
+    @Override
+    public void effect(Item item) {
+        System.out.format("PlayerExpEffect--effect--%s\n", item.getItemId());
+    }
 }

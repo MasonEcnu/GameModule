@@ -7,13 +7,13 @@ import com.mason.game.queue.manager.GameQueue;
  */
 public class ScienceLevelQueueListener implements QueueListener {
 
-  @Override
-  public void onQueueFinished(GameQueue queue) {
-    System.out.format("ScienceLevelQueue:%s finished.\n", queue);
-  }
+    @Override
+    public void onQueueFinished(GameQueue queue) {
+        System.out.format("ScienceLevelQueue:%s finished.\n", queue);
+    }
 
-  @Override
-  public void onQueueCancel(GameQueue queue) {
-    System.out.format("ScienceLevelQueue:%s canceled.\n", queue);
-  }
+    @Override
+    public void onQueueCancel(GameQueue queue) {
+        System.out.format("ScienceLevelQueue:%s canceled.\n", queue);
+    }
 }

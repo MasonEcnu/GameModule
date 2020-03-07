@@ -5,16 +5,16 @@ package com.mason.game.task.manager;
  * 任务模块
  */
 public enum TaskModule {
-  /**
-   * 默认任务
-   */
-  DEFAULT,
-  /**
-   * 主线任务
-   */
-  MAIN_TASK,
-  /**
-   * 支线任务
-   */
-  EXTENSION_TASK
+    /**
+     * 默认任务
+     */
+    DEFAULT,
+    /**
+     * 主线任务
+     */
+    MAIN_TASK,
+    /**
+     * 支线任务
+     */
+    EXTENSION_TASK
 }

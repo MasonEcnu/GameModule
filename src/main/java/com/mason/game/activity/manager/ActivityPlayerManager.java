@@ -12,15 +12,15 @@ import java.util.List;
  */
 public class ActivityPlayerManager {
 
-  private List<ActivityPlayer> players = Lists.newArrayList();
+    private List<ActivityPlayer> players = Lists.newArrayList();
 
-  public ActivityPlayerManager() {
-    for (int i = 1; i <= ActivityConstants.ACTIVITY_PLAYER_MAX_NUM; i++) {
-      players.add(new ActivityPlayer(i));
+    public ActivityPlayerManager() {
+        for (int i = 1; i <= ActivityConstants.ACTIVITY_PLAYER_MAX_NUM; i++) {
+            players.add(new ActivityPlayer(i));
+        }
     }
-  }
 
-  public List<ActivityPlayer> getPlayers() {
-    return players;
-  }
+    public List<ActivityPlayer> getPlayers() {
+        return players;
+    }
 }

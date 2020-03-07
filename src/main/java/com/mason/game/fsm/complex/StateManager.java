@@ -11,27 +11,27 @@ import java.util.Map;
  */
 class StateManager {
 
-  private static StateManager instance;
+    private static StateManager instance;
 
-  static {
-    try {
-      instance = new StateManager();
-    } catch (Exception e) {
-      e.printStackTrace();
+    static {
+        try {
+            instance = new StateManager();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  static StateManager getInstance() {
-    return instance;
-  }
+    static StateManager getInstance() {
+        return instance;
+    }
 
-  private StateManager() {
-  }
+    private StateManager() {
+    }
 
-  final Map<State, IState> STATE_HANDLER_MAP = new HashMap<State, IState>() {{
-    put(State.STATE_STANDING, new StandingState());
-    put(State.STATE_JUMPING, new JumpingState());
-    put(State.STATE_DUCKING, new DuckingState());
-    put(State.STATE_DIVING, new DivingState());
-  }};
+    final Map<State, IState> STATE_HANDLER_MAP = new HashMap<State, IState>() {{
+        put(State.STATE_STANDING, new StandingState());
+        put(State.STATE_JUMPING, new JumpingState());
+        put(State.STATE_DUCKING, new DuckingState());
+        put(State.STATE_DIVING, new DivingState());
+    }};
 }

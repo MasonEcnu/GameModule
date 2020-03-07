@@ -8,13 +8,13 @@ import com.mason.game.item.manager.Item;
  */
 public class PackageDropEffect implements InterfaceItemUseEffect {
 
-  @Override
-  public void check(Item item) {
-    System.out.format("PackageDropEffect--check--%s\n", item.getItemId());
-  }
+    @Override
+    public void check(Item item) {
+        System.out.format("PackageDropEffect--check--%s\n", item.getItemId());
+    }
 
-  @Override
-  public void effect(Item item) {
-    System.out.format("PackageDropEffect--effect--%s\n", item.getItemId());
-  }
+    @Override
+    public void effect(Item item) {
+        System.out.format("PackageDropEffect--effect--%s\n", item.getItemId());
+    }
 }

@@ -10,13 +10,13 @@ import com.mason.game.item.process.manager.ItemOperation;
  */
 public class ItemSellProcess implements ItemOperation {
 
-  @Override
-  public void execute(ItemManager manager, Item item, int operateParam) {
-    System.out.format("ItemSellProcess:%s\n", item);
-    if (item.isSaleable()) {
-      manager.sellItem(item, operateParam);
-    } else {
-      System.out.format("ItemSellProcess:%s can't be sell.", item.getItemId());
+    @Override
+    public void execute(ItemManager manager, Item item, int operateParam) {
+        System.out.format("ItemSellProcess:%s\n", item);
+        if (item.isSaleable()) {
+            manager.sellItem(item, operateParam);
+        } else {
+            System.out.format("ItemSellProcess:%s can't be sell.", item.getItemId());
+        }
     }
-  }
 }

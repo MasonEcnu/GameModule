@@ -14,27 +14,27 @@ import java.util.Map;
  */
 class ItemOperateManager {
 
-  private static ItemOperateManager instance;
+    private static ItemOperateManager instance;
 
-  static {
-    try {
-      instance = new ItemOperateManager();
-    } catch (Exception e) {
-      e.printStackTrace();
+    static {
+        try {
+            instance = new ItemOperateManager();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  static ItemOperateManager getInstance() {
-    return instance;
-  }
+    static ItemOperateManager getInstance() {
+        return instance;
+    }
 
-  private ItemOperateManager() {
-  }
+    private ItemOperateManager() {
+    }
 
-  final Map<ItemOperateType, ItemOperation> ITEM_OPERATE_PROCESS_MAP = new HashMap<ItemOperateType, ItemOperation>() {{
-    put(ItemOperateType.USE, new ItemUseProcess());
-    put(ItemOperateType.SELL, new ItemSellProcess());
-    put(ItemOperateType.DEL, new ItemDeleteProcess());
-  }};
+    final Map<ItemOperateType, ItemOperation> ITEM_OPERATE_PROCESS_MAP = new HashMap<ItemOperateType, ItemOperation>() {{
+        put(ItemOperateType.USE, new ItemUseProcess());
+        put(ItemOperateType.SELL, new ItemSellProcess());
+        put(ItemOperateType.DEL, new ItemDeleteProcess());
+    }};
 
 }

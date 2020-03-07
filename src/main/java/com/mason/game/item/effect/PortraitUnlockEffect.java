@@ -8,13 +8,13 @@ import com.mason.game.item.manager.Item;
  */
 public class PortraitUnlockEffect implements InterfaceItemUseEffect {
 
-  @Override
-  public void check(Item item) {
-    System.out.format("PortraitUnlockEffect--check--%s\n", item.getItemId());
-  }
+    @Override
+    public void check(Item item) {
+        System.out.format("PortraitUnlockEffect--check--%s\n", item.getItemId());
+    }
 
-  @Override
-  public void effect(Item item) {
-    System.out.format("PortraitUnlockEffect--effect--%s\n", item.getItemId());
-  }
+    @Override
+    public void effect(Item item) {
+        System.out.format("PortraitUnlockEffect--effect--%s\n", item.getItemId());
+    }
 }

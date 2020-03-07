@@ -7,17 +7,17 @@ import com.mason.game.queue.manager.GameQueue;
  * 队列事件监听接口
  */
 public interface QueueListener {
-  /**
-   * 当队列完成时触发
-   *
-   * @param queue 队列对象
-   */
-  void onQueueFinished(GameQueue queue);
+    /**
+     * 当队列完成时触发
+     *
+     * @param queue 队列对象
+     */
+    void onQueueFinished(GameQueue queue);
 
-  /**
-   * 当队列取消时触发
-   *
-   * @param queue 队列对象
-   */
-  void onQueueCancel(GameQueue queue);
+    /**
+     * 当队列取消时触发
+     *
+     * @param queue 队列对象
+     */
+    void onQueueCancel(GameQueue queue);
 }

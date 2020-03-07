@@ -7,25 +7,25 @@ import com.mason.game.task.manager.TaskInfo;
  */
 public class DefaultTaskChecker implements TaskChecker {
 
-  private static DefaultTaskChecker instance;
+    private static DefaultTaskChecker instance;
 
-  static {
-    try {
-      instance = new DefaultTaskChecker();
-    } catch (Exception e) {
-      e.printStackTrace();
+    static {
+        try {
+            instance = new DefaultTaskChecker();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  public static DefaultTaskChecker getInstance() {
-    return instance;
-  }
+    public static DefaultTaskChecker getInstance() {
+        return instance;
+    }
 
-  private DefaultTaskChecker() {
-  }
+    private DefaultTaskChecker() {
+    }
 
-  @Override
-  public void check(TaskInfo task) {
-    throw new RuntimeException("程序不应该走到DefaultTaskChecker");
-  }
+    @Override
+    public void check(TaskInfo task) {
+        throw new RuntimeException("程序不应该走到DefaultTaskChecker");
+    }
 }

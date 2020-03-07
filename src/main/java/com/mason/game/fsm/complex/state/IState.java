@@ -8,7 +8,7 @@ import com.mason.game.fsm.complex.Hero;
  */
 public interface IState {
 
-  void handleInput(Hero hero, String input);
+    void handleInput(Hero hero, String input);
 
-  void update(Hero hero);
+    void update(Hero hero);
 }

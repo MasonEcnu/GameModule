@@ -9,15 +9,15 @@ import com.mason.game.fsm.complex.Hero;
  */
 public class JumpingState implements IState {
 
-  @Override
-  public void handleInput(Hero hero, String input) {
-    if ("down".equals(input)) {
-      hero.setState(State.STATE_DIVING);
+    @Override
+    public void handleInput(Hero hero, String input) {
+        if ("down".equals(input)) {
+            hero.setState(State.STATE_DIVING);
+        }
     }
-  }
 
-  @Override
-  public void update(Hero hero) {
+    @Override
+    public void update(Hero hero) {
 
-  }
+    }
 }

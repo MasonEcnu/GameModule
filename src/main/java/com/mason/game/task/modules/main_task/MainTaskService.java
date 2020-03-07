@@ -11,34 +11,34 @@ import java.util.function.Consumer;
  */
 public class MainTaskService implements TaskManager {
 
-  private static MainTaskService instance;
+    private static MainTaskService instance;
 
-  static {
-    try {
-      instance = new MainTaskService();
-    } catch (Exception e) {
-      e.printStackTrace();
+    static {
+        try {
+            instance = new MainTaskService();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  public static MainTaskService getInstance() {
-    return instance;
-  }
-
-  private MainTaskDC mainTaskDC = new MainTaskDC();
-
-  private MainTaskService() {
-  }
-
-  @Override
-  public void loadAllTasks(Consumer<Collection<TaskInfo>> callback) {
-    callback.accept(mainTaskDC.getAllTasks());
-  }
-
-  @Override
-  public void onTaskProcessUpdated(TaskInfo... tasks) {
-    for (TaskInfo task : tasks) {
-      System.out.println("MainTaskService--" + task);
+    public static MainTaskService getInstance() {
+        return instance;
     }
-  }
+
+    private MainTaskDC mainTaskDC = new MainTaskDC();
+
+    private MainTaskService() {
+    }
+
+    @Override
+    public void loadAllTasks(Consumer<Collection<TaskInfo>> callback) {
+        callback.accept(mainTaskDC.getAllTasks());
+    }
+
+    @Override
+    public void onTaskProcessUpdated(TaskInfo... tasks) {
+        for (TaskInfo task : tasks) {
+            System.out.println("MainTaskService--" + task);
+        }
+    }
 }

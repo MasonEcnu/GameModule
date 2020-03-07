@@ -8,5 +8,5 @@ import com.mason.game.item.manager.Item;
  */
 public interface ItemOperation {
 
-  void execute(ItemManager manager, Item item, int operateParam);
+    void execute(ItemManager manager, Item item, int operateParam);
 }

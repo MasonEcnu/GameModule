@@ -12,15 +12,15 @@ import java.util.List;
  */
 public class ActivityConfManager {
 
-  private List<ActivityConfig> configs = Lists.newArrayList();
+    private List<ActivityConfig> configs = Lists.newArrayList();
 
-  public ActivityConfManager() {
-    for (int i = 1; i <= ActivityConstants.ACTIVITY_CONFIG_MAX_NUM; i++) {
-      configs.add(new ActivityConfig(i));
+    public ActivityConfManager() {
+        for (int i = 1; i <= ActivityConstants.ACTIVITY_CONFIG_MAX_NUM; i++) {
+            configs.add(new ActivityConfig(i));
+        }
     }
-  }
 
-  public List<ActivityConfig> getConfigs() {
-    return configs;
-  }
+    public List<ActivityConfig> getConfigs() {
+        return configs;
+    }
 }

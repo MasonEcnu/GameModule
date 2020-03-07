@@ -7,13 +7,13 @@ import com.mason.game.queue.manager.GameQueue;
  */
 public class BuildingLevelQueueListener implements QueueListener {
 
-  @Override
-  public void onQueueFinished(GameQueue queue) {
-    System.out.format("BuildingLevelQueue:%s finished.\n", queue);
-  }
+    @Override
+    public void onQueueFinished(GameQueue queue) {
+        System.out.format("BuildingLevelQueue:%s finished.\n", queue);
+    }
 
-  @Override
-  public void onQueueCancel(GameQueue queue) {
-    System.out.format("BuildingLevelQueue:%s canceled.\n", queue);
-  }
+    @Override
+    public void onQueueCancel(GameQueue queue) {
+        System.out.format("BuildingLevelQueue:%s canceled.\n", queue);
+    }
 }

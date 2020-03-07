@@ -10,29 +10,29 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class RandomUtil {
 
-  public static int between(int min, int max) {
-    if (min > max) {
-      return min;
+    public static int between(int min, int max) {
+        if (min > max) {
+            return min;
+        }
+        return ThreadLocalRandom.current().nextInt(max - min + 1) + min;
     }
-    return ThreadLocalRandom.current().nextInt(max - min + 1) + min;
-  }
 
-  public static double between(double min, double max) {
-    if (min > max) {
-      return min;
+    public static double between(double min, double max) {
+        if (min > max) {
+            return min;
+        }
+        return ThreadLocalRandom.current().nextDouble(max - min + 1) + min;
     }
-    return ThreadLocalRandom.current().nextDouble(max - min + 1) + min;
-  }
 
-  public static int between(Pair<Integer> range) {
-    return between(range.getFirst(), range.getSecond());
-  }
-
-  public static int random(int max) {
-    if (max <= 0) {
-      return 0;
-    } else {
-      return ThreadLocalRandom.current().nextInt(max);
+    public static int between(Pair<Integer> range) {
+        return between(range.getFirst(), range.getSecond());
     }
-  }
+
+    public static int random(int max) {
+        if (max <= 0) {
+            return 0;
+        } else {
+            return ThreadLocalRandom.current().nextInt(max);
+        }
+    }
 }

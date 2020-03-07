@@ -9,22 +9,22 @@ import com.mason.game.fsm.complex.Hero;
  */
 public class StandingState implements IState {
 
-  @Override
-  public void handleInput(Hero hero, String input) {
-    switch (input) {
-      case "up":
-        hero.setState(State.STATE_JUMPING);
-        break;
-      case "down":
-        hero.setState(State.STATE_DUCKING);
-        break;
-      default:
-        break;
+    @Override
+    public void handleInput(Hero hero, String input) {
+        switch (input) {
+            case "up":
+                hero.setState(State.STATE_JUMPING);
+                break;
+            case "down":
+                hero.setState(State.STATE_DUCKING);
+                break;
+            default:
+                break;
+        }
     }
-  }
 
-  @Override
-  public void update(Hero hero) {
+    @Override
+    public void update(Hero hero) {
 
-  }
+    }
 }

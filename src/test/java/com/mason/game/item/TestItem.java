@@ -12,14 +12,14 @@ import java.util.Optional;
  */
 public class TestItem {
 
-  public static void main(String[] args) {
-    ItemManager manager = new ItemManager();
-    for (int i = 0; i < 5; i++) {
-      Optional<Item> optionalItem = manager.getItems().stream().findAny();
-      List<ItemOperateType> operateTypes = ItemOperateType.valuesExceptZero();
-      Collections.shuffle(operateTypes);
-      ItemOperateType operateType = operateTypes.get(0);
-      optionalItem.ifPresent(item -> manager.operateItem(operateType, item));
+    public static void main(String[] args) {
+        ItemManager manager = new ItemManager();
+        for (int i = 0; i < 5; i++) {
+            Optional<Item> optionalItem = manager.getItems().stream().findAny();
+            List<ItemOperateType> operateTypes = ItemOperateType.valuesExceptZero();
+            Collections.shuffle(operateTypes);
+            ItemOperateType operateType = operateTypes.get(0);
+            optionalItem.ifPresent(item -> manager.operateItem(operateType, item));
+        }
     }
-  }
 }

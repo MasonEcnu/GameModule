@@ -11,34 +11,34 @@ import java.util.function.Consumer;
  */
 public class ExtensionTaskService implements TaskManager {
 
-  private static ExtensionTaskService instance;
+    private static ExtensionTaskService instance;
 
-  static {
-    try {
-      instance = new ExtensionTaskService();
-    } catch (Exception e) {
-      e.printStackTrace();
+    static {
+        try {
+            instance = new ExtensionTaskService();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  public static ExtensionTaskService getInstance() {
-    return instance;
-  }
-
-  private ExtensionTaskService() {
-  }
-
-  private ExtensionTaskDC extensionTaskDC = new ExtensionTaskDC();
-
-  @Override
-  public void loadAllTasks(Consumer<Collection<TaskInfo>> callback) {
-    callback.accept(extensionTaskDC.getAllTasks());
-  }
-
-  @Override
-  public void onTaskProcessUpdated(TaskInfo... tasks) {
-    for (TaskInfo task : tasks) {
-      System.out.println("ExtensionTaskService--" + task);
+    public static ExtensionTaskService getInstance() {
+        return instance;
     }
-  }
+
+    private ExtensionTaskService() {
+    }
+
+    private ExtensionTaskDC extensionTaskDC = new ExtensionTaskDC();
+
+    @Override
+    public void loadAllTasks(Consumer<Collection<TaskInfo>> callback) {
+        callback.accept(extensionTaskDC.getAllTasks());
+    }
+
+    @Override
+    public void onTaskProcessUpdated(TaskInfo... tasks) {
+        for (TaskInfo task : tasks) {
+            System.out.println("ExtensionTaskService--" + task);
+        }
+    }
 }

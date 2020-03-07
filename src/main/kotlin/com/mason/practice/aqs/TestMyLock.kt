@@ -5,7 +5,7 @@ package com.mason.practice.aqs
  */
 object TestMyLock {
 
-  @JvmStatic
-  fun main(args: Array<String>) {
-  }
+    @JvmStatic
+    fun main(args: Array<String>) {
+    }
 }

@@ -14,21 +14,21 @@ import java.util.stream.Collectors;
  * 全部
  */
 public enum DeviceType {
-  IOS,
-  ANDROID,
-  ALL;
+    IOS,
+    ANDROID,
+    ALL;
 
-  public static List<DeviceType> typesWithoutAll = Arrays.stream(values())
-      .filter(type -> type != DeviceType.ALL)
-      .collect(Collectors.toList());
+    public static List<DeviceType> typesWithoutAll = Arrays.stream(values())
+            .filter(type -> type != DeviceType.ALL)
+            .collect(Collectors.toList());
 
-  public static DeviceType random() {
-    int len = values().length;
-    return values()[RandomUtil.random(len)];
-  }
+    public static DeviceType random() {
+        int len = values().length;
+        return values()[RandomUtil.random(len)];
+    }
 
-  public static DeviceType randomWithoutAll() {
-    int len = typesWithoutAll.size();
-    return typesWithoutAll.get(RandomUtil.random(len));
-  }
+    public static DeviceType randomWithoutAll() {
+        int len = typesWithoutAll.size();
+        return typesWithoutAll.get(RandomUtil.random(len));
+    }
 }

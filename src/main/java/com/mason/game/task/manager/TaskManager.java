@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  */
 public interface TaskManager {
 
-  void loadAllTasks(Consumer<Collection<TaskInfo>> callback);
+    void loadAllTasks(Consumer<Collection<TaskInfo>> callback);
 
-  void onTaskProcessUpdated(TaskInfo... tasks);
+    void onTaskProcessUpdated(TaskInfo... tasks);
 }

@@ -9,9 +9,9 @@ import com.mason.game.item.process.manager.ItemOperation;
  */
 public class ItemDeleteProcess implements ItemOperation {
 
-  @Override
-  public void execute(ItemManager manager, Item item, int operateParam) {
-    System.out.format("ItemDeleteProcess:%s\n", item);
-    manager.delItem(item);
-  }
+    @Override
+    public void execute(ItemManager manager, Item item, int operateParam) {
+        System.out.format("ItemDeleteProcess:%s\n", item);
+        manager.delItem(item);
+    }
 }

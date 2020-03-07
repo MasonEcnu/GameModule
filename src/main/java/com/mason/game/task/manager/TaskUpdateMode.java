@@ -5,7 +5,7 @@ package com.mason.game.task.manager;
  * 任务更新模式
  */
 public enum TaskUpdateMode {
-  ADD, // 累加
-  CHECK,  // 检查
-  COVER  // 覆盖
+    ADD, // 累加
+    CHECK,  // 检查
+    COVER  // 覆盖
 }

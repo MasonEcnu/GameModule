@@ -5,9 +5,9 @@ package com.mason.game.activity;
  */
 public class TestActivity {
 
-  public static void main(String[] args) {
-    ActivityManager manager = new ActivityManager();
-    manager.start();
-    manager.show();
-  }
+    public static void main(String[] args) {
+        ActivityManager manager = new ActivityManager();
+        manager.start();
+        manager.show();
+    }
 }

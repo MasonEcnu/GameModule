@@ -10,13 +10,13 @@ import com.mason.game.item.process.manager.ItemOperation;
  */
 public class ItemUseProcess implements ItemOperation {
 
-  @Override
-  public void execute(ItemManager manager, Item item, int operateParam) {
-    System.out.format("ItemUseProcess:%s\n", item);
-    if (item.isUsable()) {
-      manager.useItem(item, operateParam);
-    } else {
-      System.out.format("ItemUseProcess:%s can't be used.", item.getItemId());
+    @Override
+    public void execute(ItemManager manager, Item item, int operateParam) {
+        System.out.format("ItemUseProcess:%s\n", item);
+        if (item.isUsable()) {
+            manager.useItem(item, operateParam);
+        } else {
+            System.out.format("ItemUseProcess:%s can't be used.", item.getItemId());
+        }
     }
-  }
 }

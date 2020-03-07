@@ -9,15 +9,15 @@ import com.mason.game.fsm.complex.Hero;
  */
 public class DuckingState implements IState {
 
-  @Override
-  public void handleInput(Hero hero, String input) {
-    if ("up".equals(input)) {
-      hero.setState(State.STATE_STANDING);
+    @Override
+    public void handleInput(Hero hero, String input) {
+        if ("up".equals(input)) {
+            hero.setState(State.STATE_STANDING);
+        }
     }
-  }
 
-  @Override
-  public void update(Hero hero) {
+    @Override
+    public void update(Hero hero) {
 
-  }
+    }
 }

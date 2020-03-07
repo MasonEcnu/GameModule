@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
  * 职业
  */
 public enum Career {
-  WARRIOR,
-  MAGICIAN,
-  PRIEST;
+    WARRIOR,
+    MAGICIAN,
+    PRIEST;
 
-  public static List<Career> getCareers() {
-    return Arrays.stream(values()).collect(Collectors.toList());
-  }
+    public static List<Career> getCareers() {
+        return Arrays.stream(values()).collect(Collectors.toList());
+    }
 }
