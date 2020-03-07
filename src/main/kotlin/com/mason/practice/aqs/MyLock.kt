@@ -1,7 +1,6 @@
 package com.mason.practice.aqs
 
 import java.util.concurrent.locks.AbstractQueuedSynchronizer
-import java.util.concurrent.locks.ReentrantLock
 
 /**
  * Created by mwu on 2020/3/5
@@ -9,7 +8,6 @@ import java.util.concurrent.locks.ReentrantLock
 class MyLock : AbstractQueuedSynchronizer() {
 
   override fun tryAcquireShared(arg: Int): Int {
-    val lock = ReentrantLock()
     return super.tryAcquireShared(arg)
   }
 
