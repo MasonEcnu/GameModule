@@ -21,13 +21,13 @@ public class MainTaskService implements TaskManager {
         }
     }
 
-    public static MainTaskService getInstance() {
-        return instance;
-    }
-
     private MainTaskDC mainTaskDC = new MainTaskDC();
 
     private MainTaskService() {
+    }
+
+    public static MainTaskService getInstance() {
+        return instance;
     }
 
     @Override

@@ -15,6 +15,7 @@ public class QueueManager {
     private Random random = new Random();
     private int maxQueueId = 0;
     private Timer timer = new Timer();
+    private QueueListenerManager listenerManager = QueueListenerManager.getInstance();
     private TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
@@ -22,7 +23,30 @@ public class QueueManager {
             checkQueues();
         }
     };
-    private QueueListenerManager listenerManager = QueueListenerManager.getInstance();
+
+    QueueManager() {
+        checkMaxQueueId();
+        startTimer();
+    }
+
+    QueueManager(List<GameQueue> queues) {
+        this.queues = queues;
+        checkMaxQueueId();
+        startTimer();
+    }
+
+    public static void main(String[] args) {
+        List<GameQueue> queues = new ArrayList<GameQueue>() {{
+            add(new GameQueue(1, 1, 1, 1, 1));
+            add(new GameQueue(2, 1, 1, 1, 1));
+            add(new GameQueue(3, 1, 1, 1, 1));
+            add(new GameQueue(4, 1, 1, 1, 1));
+        }};
+        QueueManager manager = new QueueManager(queues);
+        System.out.println(manager.getMaxQueueId());
+        manager.addGameQueue(1, 1, 1, 1);
+        System.out.println(manager.getMaxQueueId());
+    }
 
     private void checkQueues() {
         List<GameQueue> needToRemove = new ArrayList<>();
@@ -48,20 +72,9 @@ public class QueueManager {
         result.ifPresent(gameQueue -> gameQueue.speedUpQueue(randomSeconds));
     }
 
-    QueueManager() {
-        checkMaxQueueId();
-        startTimer();
-    }
-
     private void checkMaxQueueId() {
         Optional<GameQueue> result = queues.stream().max(Comparator.comparingInt(GameQueue::getQueueId));
         result.ifPresent(gameQueue -> maxQueueId = gameQueue.getQueueId());
-    }
-
-    QueueManager(List<GameQueue> queues) {
-        this.queues = queues;
-        checkMaxQueueId();
-        startTimer();
     }
 
     private int nextQueueId() {
@@ -107,18 +120,5 @@ public class QueueManager {
 
     private int getMaxQueueId() {
         return maxQueueId;
-    }
-
-    public static void main(String[] args) {
-        List<GameQueue> queues = new ArrayList<GameQueue>() {{
-            add(new GameQueue(1, 1, 1, 1, 1));
-            add(new GameQueue(2, 1, 1, 1, 1));
-            add(new GameQueue(3, 1, 1, 1, 1));
-            add(new GameQueue(4, 1, 1, 1, 1));
-        }};
-        QueueManager manager = new QueueManager(queues);
-        System.out.println(manager.getMaxQueueId());
-        manager.addGameQueue(1, 1, 1, 1);
-        System.out.println(manager.getMaxQueueId());
     }
 }

@@ -26,20 +26,19 @@ class GameTaskManager {
         }
     }
 
-    static GameTaskManager getInstance() {
-        return instance;
-    }
-
-    private GameTaskManager() {
-    }
-
     final Map<TaskModule, TaskManager> TASK_MODULE_SERVICE_MAP = new HashMap<TaskModule, TaskManager>() {{
         put(TaskModule.MAIN_TASK, MainTaskService.getInstance());
         put(TaskModule.EXTENSION_TASK, ExtensionTaskService.getInstance());
     }};
-
     final Map<TaskType, TaskChecker> TASK_TYPE_CHECKER_MAP = new HashMap<TaskType, TaskChecker>() {{
         put(TaskType.BUILDING_LEVEL, BuildingLevelChecker.getInstance());
         put(TaskType.PLAYER_LEVEL, PlayerLevelChecker.getInstance());
     }};
+
+    private GameTaskManager() {
+    }
+
+    static GameTaskManager getInstance() {
+        return instance;
+    }
 }

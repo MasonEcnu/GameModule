@@ -22,17 +22,17 @@ class QueueListenerManager {
         }
     }
 
-    static QueueListenerManager getInstance() {
-        return instance;
-    }
-
-    private QueueListenerManager() {
-    }
-
     final Map<QueueType, QueueListener> QUEUE_TYPE_LISTENER_MAP = new HashMap<QueueType, QueueListener>() {{
         put(QueueType.BUILDING_LEVEL_UP, new BuildingLevelQueueListener());
         put(QueueType.SCIENCE_LEVEL, new ScienceLevelQueueListener());
         put(QueueType.TRAIN_SOLIDER, new TrainSoliderQueueListener());
         put(QueueType.MARCH, new MarchQueueListener());
     }};
+
+    private QueueListenerManager() {
+    }
+
+    static QueueListenerManager getInstance() {
+        return instance;
+    }
 }

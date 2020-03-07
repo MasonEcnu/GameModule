@@ -11,6 +11,7 @@ public class Hero {
     private int level;  // 等级
     private int attackPot;  // 攻击力
     private State state;
+    private StateManager stateManager = StateManager.getInstance();
 
     public Hero(String name) {
         this.name = name;
@@ -18,8 +19,6 @@ public class Hero {
         this.attackPot = 1;
         this.state = State.STATE_STANDING;
     }
-
-    private StateManager stateManager = StateManager.getInstance();
 
     @Override
     public String toString() {

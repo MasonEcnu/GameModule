@@ -17,11 +17,11 @@ public class DefaultTaskChecker implements TaskChecker {
         }
     }
 
-    public static DefaultTaskChecker getInstance() {
-        return instance;
+    private DefaultTaskChecker() {
     }
 
-    private DefaultTaskChecker() {
+    public static DefaultTaskChecker getInstance() {
+        return instance;
     }
 
     @Override

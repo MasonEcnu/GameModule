@@ -24,17 +24,17 @@ class ItemOperateManager {
         }
     }
 
-    static ItemOperateManager getInstance() {
-        return instance;
-    }
-
-    private ItemOperateManager() {
-    }
-
     final Map<ItemOperateType, ItemOperation> ITEM_OPERATE_PROCESS_MAP = new HashMap<ItemOperateType, ItemOperation>() {{
         put(ItemOperateType.USE, new ItemUseProcess());
         put(ItemOperateType.SELL, new ItemSellProcess());
         put(ItemOperateType.DEL, new ItemDeleteProcess());
     }};
+
+    private ItemOperateManager() {
+    }
+
+    static ItemOperateManager getInstance() {
+        return instance;
+    }
 
 }

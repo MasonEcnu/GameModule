@@ -8,9 +8,9 @@ import com.mason.game.findpath.core.heuristic.HeuristicFunction;
  * 选择项目
  */
 public class FindPathOption {
-  public boolean allowDiagonal = false;
-  public boolean dontCrossCorners = false;
-  public DiagonalMovement diagonalMovement = DiagonalMovement.Always;
-  public HeuristicFunction heuristic = Heuristic.manhattan;
-  public int weight = 1;
+    public boolean allowDiagonal = false;
+    public boolean dontCrossCorners = false;
+    public DiagonalMovement diagonalMovement = DiagonalMovement.Always;
+    public HeuristicFunction heuristic = Heuristic.manhattan;
+    public int weight = 1;
 }

@@ -26,6 +26,27 @@ public class StackDemo<T> {
         this.data = data;
     }
 
+    public static void main(String[] args) {
+        StackDemo<Integer> stackDemo = new StackDemo<>(Integer.class);
+        stackDemo.put(1);
+        stackDemo.put(2);
+        stackDemo.put(3);
+        stackDemo.put(4);
+        stackDemo.put(5);
+        stackDemo.put(6);
+        stackDemo.put(7);
+        stackDemo.put(8);
+        stackDemo.put(9);
+        stackDemo.put(10);
+        stackDemo.show();
+        System.out.println(stackDemo.size());
+        System.out.println(stackDemo.innerSize());
+        stackDemo.pop();
+        stackDemo.show();
+        System.out.println(stackDemo.size());
+        System.out.println(stackDemo.innerSize());
+    }
+
     public int size() {
         return bottomIndex - topIndex;
     }
@@ -105,26 +126,5 @@ public class StackDemo<T> {
             System.out.print(data[i] + " ");
         }
         System.out.println();
-    }
-
-    public static void main(String[] args) {
-        StackDemo<Integer> stackDemo = new StackDemo<>(Integer.class);
-        stackDemo.put(1);
-        stackDemo.put(2);
-        stackDemo.put(3);
-        stackDemo.put(4);
-        stackDemo.put(5);
-        stackDemo.put(6);
-        stackDemo.put(7);
-        stackDemo.put(8);
-        stackDemo.put(9);
-        stackDemo.put(10);
-        stackDemo.show();
-        System.out.println(stackDemo.size());
-        System.out.println(stackDemo.innerSize());
-        stackDemo.pop();
-        stackDemo.show();
-        System.out.println(stackDemo.size());
-        System.out.println(stackDemo.innerSize());
     }
 }

@@ -34,6 +34,12 @@ public class BattleManager {
         }
     };
 
+    BattleManager(List<Monster> monsters) {
+        this.monsters = monsters;
+        checkMaxMonsterId();
+        monsters.forEach(System.out::println);
+    }
+
     private void randomChoose2Battle() {
         Collections.shuffle(monsters);
         if (monsters.size() <= 1) {
@@ -55,12 +61,6 @@ public class BattleManager {
     private void checkMaxMonsterId() {
         Optional<Monster> result = monsters.stream().max(Comparator.comparingInt(Monster::getMonsterId));
         result.ifPresent(monster -> maxMonsterId = monster.getMonsterId());
-    }
-
-    BattleManager(List<Monster> monsters) {
-        this.monsters = monsters;
-        checkMaxMonsterId();
-        monsters.forEach(System.out::println);
     }
 
     void startGame() {

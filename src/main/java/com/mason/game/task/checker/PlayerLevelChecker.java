@@ -18,11 +18,11 @@ public class PlayerLevelChecker implements TaskChecker {
         }
     }
 
-    public static PlayerLevelChecker getInstance() {
-        return instance;
+    private PlayerLevelChecker() {
     }
 
-    private PlayerLevelChecker() {
+    public static PlayerLevelChecker getInstance() {
+        return instance;
     }
 
     @Override

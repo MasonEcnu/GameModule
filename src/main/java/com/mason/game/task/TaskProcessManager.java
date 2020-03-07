@@ -26,14 +26,23 @@ public class TaskProcessManager {
         }
     }
 
-    public static TaskProcessManager getInstance() {
-        return instance;
-    }
+    private GameTaskManager gameTaskManager = GameTaskManager.getInstance();
 
     private TaskProcessManager() {
     }
 
-    private GameTaskManager gameTaskManager = GameTaskManager.getInstance();
+    public static TaskProcessManager getInstance() {
+        return instance;
+    }
+
+    public static void main(String[] args) {
+        Collection<Integer> updatedTasks = new ArrayList<>();
+        updatedTasks.add(1);
+        updatedTasks.add(2);
+        updatedTasks.add(3);
+        Integer[] temp = updatedTasks.toArray(new Integer[]{});
+        System.out.println(JSON.toJSONString(temp));
+    }
 
     void addTaskProgress(TaskType taskType) {
         addTaskProgress(taskType, 0, 0, 1);
@@ -120,14 +129,5 @@ public class TaskProcessManager {
         if (taskService != null) {
             taskService.onTaskProcessUpdated(task);
         }
-    }
-
-    public static void main(String[] args) {
-        Collection<Integer> updatedTasks = new ArrayList<>();
-        updatedTasks.add(1);
-        updatedTasks.add(2);
-        updatedTasks.add(3);
-        Integer[] temp = updatedTasks.toArray(new Integer[]{});
-        System.out.println(JSON.toJSONString(temp));
     }
 }

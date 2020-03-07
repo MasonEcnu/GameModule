@@ -7,23 +7,23 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer
  */
 class MyLock : AbstractQueuedSynchronizer() {
 
-  override fun tryAcquireShared(arg: Int): Int {
-    return super.tryAcquireShared(arg)
-  }
+    override fun tryAcquireShared(arg: Int): Int {
+        return super.tryAcquireShared(arg)
+    }
 
-  override fun tryRelease(arg: Int): Boolean {
-    return super.tryRelease(arg)
-  }
+    override fun tryRelease(arg: Int): Boolean {
+        return super.tryRelease(arg)
+    }
 
-  override fun tryAcquire(arg: Int): Boolean {
-    return super.tryAcquire(arg)
-  }
+    override fun tryAcquire(arg: Int): Boolean {
+        return super.tryAcquire(arg)
+    }
 
-  override fun tryReleaseShared(arg: Int): Boolean {
-    return super.tryReleaseShared(arg)
-  }
+    override fun tryReleaseShared(arg: Int): Boolean {
+        return super.tryReleaseShared(arg)
+    }
 
-  override fun isHeldExclusively(): Boolean {
-    return super.isHeldExclusively()
-  }
+    override fun isHeldExclusively(): Boolean {
+        return super.isHeldExclusively()
+    }
 }

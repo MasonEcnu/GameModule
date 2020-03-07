@@ -16,6 +16,7 @@ import java.util.Objects;
  */
 public class TaskConfManager {
 
+    private static final String confFileName = "task.txt";
     private static TaskConfManager instance;
 
     static {
@@ -27,8 +28,6 @@ public class TaskConfManager {
     }
 
     private Map<Integer, TaskConf> taskConfMap = new HashMap<>();
-
-    private static final String confFileName = "task.txt";
 
     private TaskConfManager() throws Exception {
         InputStream is = Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream(confFileName));
@@ -51,6 +50,10 @@ public class TaskConfManager {
         }
     }
 
+    public static TaskConfManager getInstance() {
+        return instance;
+    }
+
     private boolean isNumeric(String str) {
         try {
             new BigDecimal(str);
@@ -58,9 +61,5 @@ public class TaskConfManager {
             return false;//异常 说明包含非数字。
         }
         return true;
-    }
-
-    public static TaskConfManager getInstance() {
-        return instance;
     }
 }

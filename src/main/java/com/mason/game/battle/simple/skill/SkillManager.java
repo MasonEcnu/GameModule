@@ -22,13 +22,6 @@ public class SkillManager {
         }
     }
 
-    public static SkillManager getInstance() {
-        return instance;
-    }
-
-    private SkillManager() {
-    }
-
     public final Map<Career, List<SkillType>> CAREER_SKILL_MAP = new HashMap<Career, List<SkillType>>() {{
         put(Career.WARRIOR, new ArrayList<SkillType>() {{
             add(SkillType.NORMAL);
@@ -49,4 +42,11 @@ public class SkillManager {
             add(SkillType.MANTRA_SHIELD);
         }});
     }};
+
+    private SkillManager() {
+    }
+
+    public static SkillManager getInstance() {
+        return instance;
+    }
 }

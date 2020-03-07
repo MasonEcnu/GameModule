@@ -7,17 +7,17 @@ import java.util.Random;
  */
 class Tools {
 
-  private static Random random = new Random(System.currentTimeMillis());
+    private static Random random = new Random(System.currentTimeMillis());
 
-  static int random(int bound) {
-    return random.nextInt(bound);
-  }
+    static int random(int bound) {
+        return random.nextInt(bound);
+    }
 
-  static int random(int start, int end) {
-    return random.nextInt((end - start) + 1) + start;
-  }
+    static int random(int start, int end) {
+        return random.nextInt((end - start) + 1) + start;
+    }
 
-  static String generateCreateName(int i) {
-    return String.format("Creature(%s)", i);
-  }
+    static String generateCreateName(int i) {
+        return String.format("Creature(%s)", i);
+    }
 }

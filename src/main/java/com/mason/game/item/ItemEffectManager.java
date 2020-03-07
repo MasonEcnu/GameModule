@@ -25,17 +25,17 @@ class ItemEffectManager {
         }
     }
 
-    static ItemEffectManager getInstance() {
-        return instance;
-    }
-
-    private ItemEffectManager() {
-    }
-
     final Map<ItemUseEffect, InterfaceItemUseEffect> ITEM_USE_EFFECT_MAP = new HashMap<ItemUseEffect, InterfaceItemUseEffect>() {{
         put(ItemUseEffect.PACKAGE_DROP, new PackageDropEffect());
         put(ItemUseEffect.CASTLE_SHIELD, new CastleShieldEffect());
         put(ItemUseEffect.PLAYER_EXP, new PlayerExpEffect());
         put(ItemUseEffect.PORTRAIT_UNLOCK, new PortraitUnlockEffect());
     }};
+
+    private ItemEffectManager() {
+    }
+
+    static ItemEffectManager getInstance() {
+        return instance;
+    }
 }

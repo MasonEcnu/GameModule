@@ -31,11 +31,11 @@ public enum ItemUseEffect {
         return Arrays.stream(values()).filter(it -> it != DEFAULT).collect(Collectors.toList());
     }
 
-    public int getEffect() {
-        return effect;
-    }
-
     public static void main(String[] args) {
         System.out.println(ItemUseEffect.CASTLE_SHIELD.getEffect());
+    }
+
+    public int getEffect() {
+        return effect;
     }
 }

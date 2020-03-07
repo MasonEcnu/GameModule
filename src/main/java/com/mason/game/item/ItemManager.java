@@ -38,16 +38,16 @@ public class ItemManager {
         startTimer();
     }
 
-    private void checkMaxQueueId() {
-        Optional<Item> result = items.stream().max(Comparator.comparingInt(Item::getItemId));
-        result.ifPresent(item -> maxItemId = item.getItemId());
-    }
-
     ItemManager(List<Item> items) {
         this.items = items;
         initSomeItems();
         checkMaxQueueId();
         startTimer();
+    }
+
+    private void checkMaxQueueId() {
+        Optional<Item> result = items.stream().max(Comparator.comparingInt(Item::getItemId));
+        result.ifPresent(item -> maxItemId = item.getItemId());
     }
 
     private void initSomeItems() {

@@ -18,11 +18,11 @@ public class BuildingLevelChecker implements TaskChecker {
         }
     }
 
-    public static BuildingLevelChecker getInstance() {
-        return instance;
+    private BuildingLevelChecker() {
     }
 
-    private BuildingLevelChecker() {
+    public static BuildingLevelChecker getInstance() {
+        return instance;
     }
 
     @Override

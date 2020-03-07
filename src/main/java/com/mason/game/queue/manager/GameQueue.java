@@ -26,6 +26,14 @@ public class GameQueue {
         this.firstParam = firstParam;
     }
 
+    public static void main(String[] args) {
+        GameQueue queue = new GameQueue(1, 1, 1, 1, 1);
+        System.out.println(queue);
+        queue.speedUpQueue(1);
+        System.out.println(queue);
+        System.out.println(queue.isFinished());
+    }
+
     public int getQueueId() {
         return queueId;
     }
@@ -90,13 +98,5 @@ public class GameQueue {
             return ((GameQueue) obj).queueId == this.queueId;
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        GameQueue queue = new GameQueue(1, 1, 1, 1, 1);
-        System.out.println(queue);
-        queue.speedUpQueue(1);
-        System.out.println(queue);
-        System.out.println(queue.isFinished());
     }
 }

@@ -21,14 +21,14 @@ public class ExtensionTaskService implements TaskManager {
         }
     }
 
-    public static ExtensionTaskService getInstance() {
-        return instance;
-    }
+    private ExtensionTaskDC extensionTaskDC = new ExtensionTaskDC();
 
     private ExtensionTaskService() {
     }
 
-    private ExtensionTaskDC extensionTaskDC = new ExtensionTaskDC();
+    public static ExtensionTaskService getInstance() {
+        return instance;
+    }
 
     @Override
     public void loadAllTasks(Consumer<Collection<TaskInfo>> callback) {
