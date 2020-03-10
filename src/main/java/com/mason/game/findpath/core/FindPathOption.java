@@ -1,5 +1,6 @@
 package com.mason.game.findpath.core;
 
+import com.mason.game.findpath.Constants;
 import com.mason.game.findpath.core.heuristic.Heuristic;
 import com.mason.game.findpath.core.heuristic.HeuristicFunction;
 
@@ -13,4 +14,6 @@ public class FindPathOption {
     public DiagonalMovement diagonalMovement = DiagonalMovement.Always;
     public HeuristicFunction heuristic = Heuristic.manhattan;
     public int weight = 1;
+    public boolean trackRecursion = false;
+    public int timeLimit = Constants.INFINITY;
 }

@@ -4,6 +4,9 @@ import com.mason.game.findpath.core.FindPathOption;
 import com.mason.game.findpath.core.Grid;
 import com.mason.game.findpath.core.heuristic.Heuristic;
 import com.mason.game.findpath.finders.AStarFinder;
+import com.mason.game.findpath.finders.BiAStarFinder;
+import com.mason.game.findpath.finders.IDAStarFinder;
+import com.mason.game.findpath.finders.TraceFinder;
 import org.junit.Test;
 
 import java.util.List;
@@ -33,6 +36,15 @@ public class TestFindPath {
         }
     }
 
+    private static void printMap(int[][] localMaps) {
+        for (int[] map : localMaps) {
+            for (int i : map) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+
     @Test
     public void testAStar() {
         int startX = 1, startY = 1, endX = 4, endY = 5;
@@ -50,6 +62,36 @@ public class TestFindPath {
 
     @Test
     public void testBiAStar() {
+        int startX = 2, startY = 2, endX = 4, endY = 5;
+        Grid grid = new Grid(maps[0].length, maps.length, maps);
+        FindPathOption option = new FindPathOption();
+        BiAStarFinder biAStarFinder = new BiAStarFinder(option);
+        List<List<Integer>> path = biAStarFinder.findPath(startX, startY, endX, endY, grid);
+        path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
+        printMap();
+    }
 
+    @Test
+    public void testIDAStar() {
+        int startX = 1, startY = 1, endX = 4, endY = 5;
+        Grid grid = new Grid(maps[0].length, maps.length, maps);
+        FindPathOption option = new FindPathOption();
+        option.timeLimit = 2;
+        IDAStarFinder idaStarFinder = new IDAStarFinder(option);
+        List<List<Integer>> path = idaStarFinder.findPath(startX, startY, endX, endY, grid);
+        path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
+        printMap();
+    }
+
+    @Test
+    public void testTrace() {
+        int startX = 1, startY = 1, endX = 4, endY = 5;
+        Grid grid = new Grid(maps[0].length, maps.length, maps);
+        FindPathOption option = new FindPathOption();
+        option.allowDiagonal = false;
+        TraceFinder traceFinder = new TraceFinder(option);
+        List<List<Integer>> path = traceFinder.findPath(startX, startY, endX, endY, grid);
+        path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
+        printMap();
     }
 }

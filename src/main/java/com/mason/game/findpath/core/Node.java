@@ -15,8 +15,12 @@ public class Node implements Comparable<Node> {
     public double g = 0;
     public double h = 0;
     public double f = 0;
-    public boolean closed = false;
-    public boolean opened = false;
+    // for A star
+    public Object closed = false;
+    public Object opened = false;
+    // for IDA star
+    public int retainCount = 0;
+    public boolean tested = false;
 
     public Node(int x, int y, boolean walkable) {
         this.x = x;

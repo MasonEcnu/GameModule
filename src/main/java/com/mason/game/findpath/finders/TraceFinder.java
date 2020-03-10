@@ -10,38 +10,34 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
- * Created by mwu on 2020/3/6
- * A*寻路算法
+ * Created by mwu on 2020/3/10
+ * 感觉和A星没啥区别啊
  */
-public class AStarFinder {
+public class TraceFinder {
     private boolean allowDiagonal;
     private boolean dontCrossCorners;
     private DiagonalMovement diagonalMovement;
     private HeuristicFunction heuristic;
-    private int weight;
 
     private Queue<Node> openList = new PriorityQueue<>(); // 优先队列(升序)
 
     /**
-     * A* path-finder. Based upon https://github.com/bgrins/javascript-astar
+     * A* path-finder.
+     * based upon https://github.com/bgrins/javascript-astar
      *
-     * @param opt                {Object}           opt
-     * @param {boolean}          opt.allowDiagonal Whether diagonal movement is allowed.
-     *                           Deprecated, use diagonalMovement instead.
-     * @param {boolean}          opt.dontCrossCorners Disallow diagonal movement touching
-     *                           block corners. Deprecated, use diagonalMovement instead.
-     * @param {DiagonalMovement} opt.diagonalMovement Allowed diagonal movement.
-     * @param {function}         opt.heuristic Heuristic function to estimate the distance
-     *                           (defaults to manhattan).
-     * @param {number}           opt.weight Weight to apply to the heuristic to allow for
-     *                           suboptimal paths, in order to speed up the search.
+     * @param {object}   opt
+     * @param {boolean}  opt.allowDiagonal Whether diagonal movement is allowed.
+     * @param {boolean}  opt.dontCrossCorners Disallow diagonal movement touching block corners.
+     * @param {function} opt.heuristic Heuristic function to estimate the distance
+     *                   (defaults to manhattan).
+     * @param {integer}  opt.weight Weight to apply to the heuristic to allow for suboptimal paths,
+     *                   in order to speed up the search.
      * @constructor
      */
-    public AStarFinder(FindPathOption opt) {
+    public TraceFinder(FindPathOption opt) {
         this.allowDiagonal = opt.allowDiagonal;
         this.dontCrossCorners = opt.dontCrossCorners;
         this.heuristic = opt.heuristic;
-        this.weight = opt.weight;
         this.diagonalMovement = opt.diagonalMovement;
 
         if (this.diagonalMovement != null) {
@@ -72,7 +68,7 @@ public class AStarFinder {
     /**
      * Find and return the the path.
      *
-     * @return {Array<Array<number>>} The path, including both start and
+     * @return {Array.<[number, number]>} The path, including both start and
      * end positions.
      */
     public List<List<Integer>> findPath(int startX, int startY, int endX, int endY, Grid grid) {
@@ -80,8 +76,6 @@ public class AStarFinder {
         Node endNode = grid.getNodeAt(endX, endY);
 
         HeuristicFunction heuristic = this.heuristic;
-        DiagonalMovement diagonalMovement = this.diagonalMovement;
-        int weight = this.weight;
         int x, y;
         // set the `g` and `f` value of the start node to be 0
         startNode.g = 0;
@@ -104,6 +98,8 @@ public class AStarFinder {
 
             // get neigbours of the current node
             List<Node> neighbors = grid.getNeighbors(node, diagonalMovement);
+            int ar = neighbors.size();
+
             for (Node neighbor : neighbors) {
                 if (TypeConversion.isBoolean(neighbor.closed) && (boolean) neighbor.closed) {
                     continue;
@@ -115,30 +111,29 @@ public class AStarFinder {
                 // get the distance between current node and the neighbor
                 // and calculate the next g score
                 double ng = node.g + ((x - node.x == 0 || y - node.y == 0) ? 1 : Math.sqrt(2));
+
                 // check if the neighbor has not been inspected yet, or
                 // can be reached with smaller cost from the current node
                 if (TypeConversion.isBoolean(neighbor.opened)) {
                     if (!(boolean) neighbor.opened || ng < neighbor.g) {
-                        neighbor.g = ng;
+                        neighbor.g = ng * ar / 9; //the trace magic
                         if (neighbor.h <= 0) {
-                            neighbor.h = weight * heuristic.calcDistance(Math.abs(x - endX), Math.abs(y - endY));
+                            neighbor.h = heuristic.calcDistance(Math.abs(x - endX), Math.abs(y - endY));
                         }
                         neighbor.f = neighbor.g + neighbor.h;
                         neighbor.parent = node;
-
-
-                        if (!(boolean) neighbor.opened) {
-                            openList.add(neighbor);
-                            neighbor.opened = true;
-                        } else {
-                            // the neighbor can be reached with smaller cost.
-                            // Since its f value has been updated, we have to
-                            // update its position in the open list
-                            openList.removeIf(temp -> temp.equals(neighbor));
-                            openList.add(neighbor);
-                        }
                     }
 
+                    if (!(boolean) neighbor.opened) {
+                        openList.add(neighbor);
+                        neighbor.opened = true;
+                    } else {
+                        // the neighbor can be reached with smaller cost.
+                        // Since its f value has been updated, we have to
+                        // update its position in the open list
+                        openList.removeIf(temp -> temp.equals(neighbor));
+                        openList.add(neighbor);
+                    }
                 }
             }// end for each neighbor
         }// end while not open list empty
