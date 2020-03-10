@@ -3,10 +3,7 @@ package com.mason.game.findpath;
 import com.mason.game.findpath.core.FindPathOption;
 import com.mason.game.findpath.core.Grid;
 import com.mason.game.findpath.core.heuristic.Heuristic;
-import com.mason.game.findpath.finders.AStarFinder;
-import com.mason.game.findpath.finders.BiAStarFinder;
-import com.mason.game.findpath.finders.IDAStarFinder;
-import com.mason.game.findpath.finders.TraceFinder;
+import com.mason.game.findpath.finders.*;
 import org.junit.Test;
 
 import java.util.List;
@@ -91,6 +88,28 @@ public class TestFindPath {
         option.allowDiagonal = false;
         TraceFinder traceFinder = new TraceFinder(option);
         List<List<Integer>> path = traceFinder.findPath(startX, startY, endX, endY, grid);
+        path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
+        printMap();
+    }
+
+    @Test
+    public void testBestFirst() {
+        int startX = 1, startY = 1, endX = 4, endY = 5;
+        Grid grid = new Grid(maps[0].length, maps.length, maps);
+        FindPathOption option = new FindPathOption();
+        BestFirstFinder bestFirstFinder = new BestFirstFinder(option);
+        List<List<Integer>> path = bestFirstFinder.findPath(startX, startY, endX, endY, grid);
+        path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
+        printMap();
+    }
+
+    @Test
+    public void testBiBestFirst() {
+        int startX = 1, startY = 1, endX = 4, endY = 5;
+        Grid grid = new Grid(maps[0].length, maps.length, maps);
+        FindPathOption option = new FindPathOption();
+        BiBestFirstFinder biBestFirstFinder = new BiBestFirstFinder(option);
+        List<List<Integer>> path = biBestFirstFinder.findPath(startX, startY, endX, endY, grid);
         path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
         printMap();
     }
