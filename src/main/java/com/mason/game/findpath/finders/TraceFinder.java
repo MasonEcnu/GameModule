@@ -25,13 +25,13 @@ public class TraceFinder {
      * A* path-finder.
      * based upon https://github.com/bgrins/javascript-astar
      *
-     * @param {object}   opt
-     * @param {boolean}  opt.allowDiagonal Whether diagonal movement is allowed.
-     * @param {boolean}  opt.dontCrossCorners Disallow diagonal movement touching block corners.
-     * @param {function} opt.heuristic Heuristic function to estimate the distance
-     *                   (defaults to manhattan).
-     * @param {integer}  opt.weight Weight to apply to the heuristic to allow for suboptimal paths,
-     *                   in order to speed up the search.
+     * @param opt {FindPathOption}   opt
+     *            opt.allowDiagonal Whether diagonal movement is allowed.
+     *            opt.dontCrossCorners Disallow diagonal movement touching block corners.
+     *            opt.heuristic Heuristic function to estimate the distance
+     *            (defaults to manhattan).
+     *            opt.weight Weight to apply to the heuristic to allow for suboptimal paths,
+     *            in order to speed up the search.
      * @constructor
      */
     public TraceFinder(FindPathOption opt) {

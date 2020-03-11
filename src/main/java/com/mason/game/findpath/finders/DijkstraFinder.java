@@ -15,12 +15,12 @@ public class DijkstraFinder {
     /**
      * Dijkstra path-finder.
      *
-     * @param {Object}           opt
-     * @param {boolean}          opt.allowDiagonal Whether diagonal movement is allowed.
-     *                           Deprecated, use diagonalMovement instead.
-     * @param {boolean}          opt.dontCrossCorners Disallow diagonal movement touching
-     *                           block corners. Deprecated, use diagonalMovement instead.
-     * @param {DiagonalMovement} opt.diagonalMovement Allowed diagonal movement.
+     * @param opt {FindPathOption}           opt
+     *            opt.allowDiagonal Whether diagonal movement is allowed.
+     *            Deprecated, use diagonalMovement instead.
+     *            opt.dontCrossCorners Disallow diagonal movement touching
+     *            block corners. Deprecated, use diagonalMovement instead.
+     *            opt.diagonalMovement Allowed diagonal movement.
      * @constructor
      */
     public DijkstraFinder(FindPathOption opt) {

@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Node implements Comparable<Node> {
     public int x;
     public int y;
-    public boolean walkable;
+    boolean walkable;
     public Node parent = null;
     public double g = 0;
     public double h = 0;
@@ -21,6 +21,8 @@ public class Node implements Comparable<Node> {
     // for IDA star
     public int retainCount = 0;
     public boolean tested = false;
+    // for BreadthFirst
+    public StartType startType = StartType.BY_START;
 
     public Node(int x, int y, boolean walkable) {
         this.x = x;

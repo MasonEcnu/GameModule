@@ -31,19 +31,19 @@ public class IDAStarFinder {
      * "A Parallel Implementation of Iterative-Deeping-A*", January 1987.
      * ftp://ftp.cs.utexas.edu/.snapshot/hourly.1/pub/AI-Lab/tech-reports/UT-AI-TR-87-46.pdf
      *
-     * @param opt                {FindPathOption}           opt
-     * @param {boolean}          opt.allowDiagonal Whether diagonal movement is allowed.
-     *                           Deprecated, use diagonalMovement instead.
-     * @param {boolean}          opt.dontCrossCorners Disallow diagonal movement touching
-     *                           block corners. Deprecated, use diagonalMovement instead.
-     * @param {DiagonalMovement} opt.diagonalMovement Allowed diagonal movement.
-     * @param {function}         opt.heuristic Heuristic function to estimate the distance
-     *                           (defaults to manhattan).
-     * @param {number}           opt.weight Weight to apply to the heuristic to allow for
-     *                           suboptimal paths, in order to speed up the search.
-     * @param {boolean}          opt.trackRecursion Whether to track recursion for
-     *                           statistical purposes.
-     * @param {number}           opt.timeLimit Maximum execution time. Use <= 0 for infinite.
+     * @param opt {FindPathOption}           opt
+     *            opt.allowDiagonal Whether diagonal movement is allowed.
+     *            Deprecated, use diagonalMovement instead.
+     *            opt.dontCrossCorners Disallow diagonal movement touching
+     *            block corners. Deprecated, use diagonalMovement instead.
+     *            opt.diagonalMovement Allowed diagonal movement.
+     *            opt.heuristic Heuristic function to estimate the distance
+     *            (defaults to manhattan).
+     *            opt.weight Weight to apply to the heuristic to allow for
+     *            suboptimal paths, in order to speed up the search.
+     *            opt.trackRecursion Whether to track recursion for
+     *            statistical purposes.
+     *            opt.timeLimit Maximum execution time. Use <= 0 for infinite.
      * @author Gerard Meier (www.gerardmeier.com)
      * @constructor
      */
@@ -168,9 +168,7 @@ public class IDAStarFinder {
 
         /*jshint -W084 *///Disable warning: Expected a conditional expression and instead saw an assignment
         double min = Constants.INFINITY;
-        for (int k = 0; k < neighbours.size(); ++k) {
-            Node neighbour = neighbours.get(k);
-
+        for (Node neighbour : neighbours) {
             /*jshint +W084 *///Enable warning: Expected a conditional expression and instead saw an assignment
             if (this.trackRecursion) {
                 // Retain a copy for visualisation. Due to recursion, this

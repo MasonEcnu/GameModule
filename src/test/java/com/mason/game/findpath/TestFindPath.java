@@ -127,4 +127,26 @@ public class TestFindPath {
         path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
         printMap();
     }
+
+    @Test
+    public void testBreadthFirst() {
+        int startX = 1, startY = 1, endX = 4, endY = 5;
+        Grid grid = new Grid(maps[0].length, maps.length, maps);
+        FindPathOption option = new FindPathOption();
+        BreadthFirstFinder breadthFirstFinder = new BreadthFirstFinder(option);
+        List<List<Integer>> path = breadthFirstFinder.findPath(startX, startY, endX, endY, grid);
+        path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
+        printMap();
+    }
+
+    @Test
+    public void testBiBreadthFirst() {
+        int startX = 1, startY = 1, endX = 4, endY = 5;
+        Grid grid = new Grid(maps[0].length, maps.length, maps);
+        FindPathOption option = new FindPathOption();
+        BiBreadthFirstFinder biBreadthFirstFinder = new BiBreadthFirstFinder(option);
+        List<List<Integer>> path = biBreadthFirstFinder.findPath(startX, startY, endX, endY, grid);
+        path.forEach(coord -> maps[coord.get(1)][coord.get(0)] = PATH);
+        printMap();
+    }
 }

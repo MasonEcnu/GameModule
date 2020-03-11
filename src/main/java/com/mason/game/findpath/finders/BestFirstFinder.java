@@ -16,14 +16,14 @@ public class BestFirstFinder {
     /**
      * Best-First-Search path-finder.
      *
-     * @param opt                {FindPathOption}           opt
-     * @param {boolean}          opt.allowDiagonal Whether diagonal movement is allowed.
-     *                           Deprecated, use diagonalMovement instead.
-     * @param {boolean}          opt.dontCrossCorners Disallow diagonal movement touching
-     *                           block corners. Deprecated, use diagonalMovement instead.
-     * @param {DiagonalMovement} opt.diagonalMovement Allowed diagonal movement.
-     * @param {function}         opt.heuristic Heuristic function to estimate the distance
-     *                           (defaults to manhattan).
+     * @param opt {FindPathOption}           opt
+     *            opt.allowDiagonal Whether diagonal movement is allowed.
+     *            Deprecated, use diagonalMovement instead.
+     *            opt.dontCrossCorners Disallow diagonal movement touching
+     *            block corners. Deprecated, use diagonalMovement instead.
+     *            opt.diagonalMovement Allowed diagonal movement.
+     *            opt.heuristic Heuristic function to estimate the distance
+     *            (defaults to manhattan).
      * @constructor
      */
     public BestFirstFinder(FindPathOption opt) {

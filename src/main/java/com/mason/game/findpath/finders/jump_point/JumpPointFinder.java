@@ -18,19 +18,14 @@ public class JumpPointFinder {
     private HeuristicFunction heuristic;
     private Queue<Node> openList = new PriorityQueue<>(); // 优先队列(升序)
 
-    // 神奇的参数
-    private Grid grid = null;
-    private Node startNode = null;
-    private Node endNode = null;
-
     private IJumpPointFinder jumpFinder;
 
     /**
      * Base class for the Jump Point Search algorithm
      *
-     * @param opt        {object} opt
-     * @param {function} opt.heuristic Heuristic function to estimate the distance
-     *                   (defaults to manhattan).
+     * @param opt {FindPathOption} opt
+     *            opt.heuristic Heuristic function to estimate the distance
+     *            (defaults to manhattan).
      */
     public JumpPointFinder(FindPathOption opt) {
         this.heuristic = opt.heuristic;
@@ -46,10 +41,8 @@ public class JumpPointFinder {
      * end positions.
      */
     public List<List<Integer>> findPath(int startX, int startY, int endX, int endY, Grid grid) {
-
-        Node startNode = this.startNode = grid.getNodeAt(startX, startY);
-        Node endNode = this.endNode = grid.getNodeAt(endX, endY);
-        this.grid = grid;
+        Node startNode = grid.getNodeAt(startX, startY);
+        Node endNode = grid.getNodeAt(endX, endY);
 
         // set the `g` and `f` value of the start node to be 0
         startNode.g = 0;
@@ -68,7 +61,7 @@ public class JumpPointFinder {
                 return Util.expandPath(Util.backtrace(endNode));
             }
 
-            identifySuccessors(node);
+            identifySuccessors(grid, node, endNode);
         }
 
         return new ArrayList<>();
@@ -79,12 +72,11 @@ public class JumpPointFinder {
      * direction of each available neighbor, adding any points found to the open
      * list.
      */
-    private void identifySuccessors(Node node) {
-        Grid grid = this.grid;
+    private void identifySuccessors(Grid grid, Node node, Node endNode) {
         HeuristicFunction heuristic = this.heuristic;
         Queue<Node> openList = this.openList;
-        int endX = this.endNode.x;
-        int endY = this.endNode.y;
+        int endX = endNode.x;
+        int endY = endNode.y;
         int x = node.x;
         int y = node.y;
         List<List<Integer>> neighbors = jumpFinder.findNeighbors(grid, node);

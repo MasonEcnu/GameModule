@@ -27,16 +27,16 @@ public class BiAStarFinder {
      * A* path-finder.
      * based upon https://github.com/bgrins/javascript-astar
      *
-     * @param opt                {Object}           opt
-     * @param {boolean}          opt.allowDiagonal Whether diagonal movement is allowed.
-     *                           Deprecated, use diagonalMovement instead.
-     * @param {boolean}          opt.dontCrossCorners Disallow diagonal movement touching
-     *                           block corners. Deprecated, use diagonalMovement instead.
-     * @param {DiagonalMovement} opt.diagonalMovement Allowed diagonal movement.
-     * @param {function}         opt.heuristic Heuristic function to estimate the distance
-     *                           (defaults to manhattan).
-     * @param {number}           opt.weight Weight to apply to the heuristic to allow for
-     *                           suboptimal paths, in order to speed up the search.
+     * @param opt {Object}           opt
+     *            opt.allowDiagonal Whether diagonal movement is allowed.
+     *            Deprecated, use diagonalMovement instead.
+     *            opt.dontCrossCorners Disallow diagonal movement touching
+     *            block corners. Deprecated, use diagonalMovement instead.
+     *            opt.diagonalMovement Allowed diagonal movement.
+     *            opt.heuristic Heuristic function to estimate the distance
+     *            (defaults to manhattan).
+     *            opt.weight Weight to apply to the heuristic to allow for
+     *            suboptimal paths, in order to speed up the search.
      * @constructor
      */
     public BiAStarFinder(FindPathOption opt) {
