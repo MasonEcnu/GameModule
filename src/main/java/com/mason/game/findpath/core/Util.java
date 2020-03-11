@@ -19,18 +19,10 @@ public class Util {
      */
     public static List<List<Integer>> backtrace(Node node) {
         List<List<Integer>> path = new ArrayList<>();
-        path.add(new ArrayList<Integer>() {{
-            add(node.x);
-            add(node.y);
-        }});
-        Node temp = node;
-        while (temp.parent != null) {
-            temp = temp.parent;
-            Node finalTemp = temp;
-            path.add(new ArrayList<Integer>() {{
-                add(finalTemp.x);
-                add(finalTemp.y);
-            }});
+        path.add(packageList(node));
+        while (node.parent != null) {
+            node = node.parent;
+            path.add(packageList(node));
         }
         Collections.reverse(path);
         return path;
@@ -92,12 +84,7 @@ public class Util {
         err = dx - dy;
 
         while (true) {
-            int finalX = x0, finalY = y0;
-            line.add(new ArrayList<Integer>() {{
-                add(finalX);
-                add(finalY);
-            }});
-
+            line.add(packageList(x0, y0));
             if (x0 == x1 && y0 == y1) break;
 
             e2 = 2 * err;
@@ -122,17 +109,13 @@ public class Util {
      */
     public static List<List<Integer>> expandPath(List<List<Integer>> path) {
         List<List<Integer>> expanded = new ArrayList<>();
-        List<List<Integer>> interpolated = new ArrayList<>();
         int len = path.size();
-        List<Integer> coord0;
-        List<Integer> coord1;
-        int interpolatedLen;
         if (len < 2) return expanded;
         for (int i = 0; i < len - 1; ++i) {
-            coord0 = path.get(i);
-            coord1 = path.get(i + 1);
-            interpolated = interpolate(coord0.get(0), coord0.get(1), coord1.get(0), coord1.get(1));
-            interpolatedLen = interpolated.size();
+            List<Integer> coord0 = path.get(i);
+            List<Integer> coord1 = path.get(i + 1);
+            List<List<Integer>> interpolated = interpolate(coord0.get(0), coord0.get(1), coord1.get(0), coord1.get(1));
+            int interpolatedLen = interpolated.size();
             for (int j = 0; j < interpolatedLen - 1; ++j) {
                 expanded.add(interpolated.get(j));
             }
@@ -162,11 +145,7 @@ public class Util {
         sx = x0;
         sy = y0;
         List<List<Integer>> newPath = new ArrayList<>();
-        int finalSx = sx, finalSy = sy;
-        newPath.add(new ArrayList<Integer>() {{
-            add(finalSx);
-            add(finalSy);
-        }});
+        newPath.add(packageList(sx, sy));
 
         for (int i = 2; i < len; ++i) {
             coord = path.get(i);
@@ -189,10 +168,7 @@ public class Util {
                 sy = lastValidCoord.get(1);
             }
         }
-        newPath.add(new ArrayList<Integer>() {{
-            add(x1);
-            add(y1);
-        }});
+        newPath.add(packageList(x1, y1));
         return newPath;
     }
 
@@ -226,10 +202,7 @@ public class Util {
         dy /= sq;
 
         // start the new path
-        compressed.add(new ArrayList<Integer>() {{
-            add(sx);
-            add(sy);
-        }});
+        compressed.add(packageList(sx, sy));
 
         for (int i = 2; i < path.size(); ++i) {
             // store the last point
@@ -256,19 +229,32 @@ public class Util {
 
             // if the direction has changed, store the point
             if (dx != ldx || dy != ldy) {
-                int finalLx = lx, finalLy = ly;
-                compressed.add(new ArrayList<Integer>() {{
-                    add(finalLx);
-                    add(finalLy);
-                }});
+                compressed.add(packageList(lx, ly));
             }
         }
-        int finalPx = px, finalPy = py;
-        compressed.add(new ArrayList<Integer>() {{
-            add(finalPx);
-            add(finalPy);
-        }});
+        compressed.add(packageList(px, py));
         return compressed;
+    }
+
+    /**
+     * 将xy包装成一个list
+     *
+     * @param x x坐标
+     * @param y y坐标
+     * @return List<Integer>
+     */
+    public static List<Integer> packageList(int x, int y) {
+        return new ArrayList<Integer>() {{
+            add(x);
+            add(y);
+        }};
+    }
+
+    public static List<Integer> packageList(Node node) {
+        return new ArrayList<Integer>() {{
+            add(node.x);
+            add(node.y);
+        }};
     }
 
 }

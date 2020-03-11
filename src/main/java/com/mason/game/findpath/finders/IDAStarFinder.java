@@ -155,10 +155,7 @@ public class IDAStarFinder {
         }
 
         if (node == endNode) {
-            route.add(new ArrayList<Integer>() {{
-                add(node.x);
-                add(node.y);
-            }});
+            route.add(Util.packageList(node));
             return node;
         }
 
@@ -188,10 +185,7 @@ public class IDAStarFinder {
             double cost = (node.x == neighbour.x || node.y == neighbour.y) ? 1 : Math.sqrt(2);
             Object t = search(grid, neighbour, endNode, g + cost, cutoff, route, depth + 1, startTime);
             if (TypeConversion.isNode(t)) {
-                route.add(new ArrayList<Integer>() {{
-                    add(node.x);
-                    add(node.y);
-                }});
+                route.add(Util.packageList(node));
                 // For a typical A* linked list, this would work:
                 // neighbour.parent = node;
                 return t;

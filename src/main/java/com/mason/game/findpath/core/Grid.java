@@ -125,6 +125,10 @@ public class Grid {
         return this.isInside(x, y) && this.nodes.get(y).get(x).walkable;
     }
 
+    public boolean isWalkableAt(Node node) {
+        return this.isInside(node.x, node.y) && this.nodes.get(node.y).get(node.x).walkable;
+    }
+
     /**
      * Get the neighbors of the given node.
      * <p>

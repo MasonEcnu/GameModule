@@ -16,4 +16,5 @@ public class FindPathOption {
     public int weight = 1;
     public boolean trackRecursion = false;
     public int timeLimit = Constants.INFINITY;
+    public boolean trackJumpRecursion = false;
 }
