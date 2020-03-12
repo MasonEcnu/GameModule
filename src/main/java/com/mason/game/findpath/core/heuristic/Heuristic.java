@@ -5,6 +5,14 @@ package com.mason.game.findpath.core.heuristic;
  */
 public class Heuristic {
 
+    public static HeuristicFunction manhattan = (dx, dy) -> dx + dy;
+    public static HeuristicFunction euclidean = (dx, dy) -> Math.sqrt(dx * dx + dy * dy);
+    public static HeuristicFunction octile = (dx, dy) -> {
+        double F = Math.sqrt(2);
+        return (dx < dy) ? F * dx + dy : F * dy + dx;
+    };
+    public static HeuristicFunction chebyshev = Math::max;
+
     /**
      * Manhattan distance.
      *
@@ -16,8 +24,6 @@ public class Heuristic {
         return dx + dy;
     }
 
-    public static HeuristicFunction manhattan = (dx, dy) -> dx + dy;
-
     /**
      * Euclidean distance.
      *
@@ -28,8 +34,6 @@ public class Heuristic {
     public static double euclidean(int dx, int dy) {
         return Math.sqrt(dx * dx + dy * dy);
     }
-
-    public static HeuristicFunction euclidean = (dx, dy) -> Math.sqrt(dx * dx + dy * dy);
 
     /**
      * Octile distance.
@@ -43,11 +47,6 @@ public class Heuristic {
         return (dx < dy) ? F * dx + dy : F * dy + dx;
     }
 
-    public static HeuristicFunction octile = (dx, dy) -> {
-        double F = Math.sqrt(2);
-        return (dx < dy) ? F * dx + dy : F * dy + dx;
-    };
-
     /**
      * Chebyshev distance.
      *
@@ -58,6 +57,4 @@ public class Heuristic {
     public static double chebyshev(int dx, int dy) {
         return Math.max(dx, dy);
     }
-
-    public static HeuristicFunction chebyshev = Math::max;
 }

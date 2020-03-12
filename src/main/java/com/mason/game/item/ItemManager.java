@@ -38,7 +38,7 @@ public class ItemManager {
         startTimer();
     }
 
-    ItemManager(List<Item> items) {
+    public ItemManager(List<Item> items) {
         this.items = items;
         initSomeItems();
         checkMaxQueueId();
@@ -100,7 +100,7 @@ public class ItemManager {
         addItem(item);
     }
 
-    void addItem(int itemType, int useEffect) {
+    private void addItem(int itemType, int useEffect) {
         Item item = new Item(nextItemId(), itemType, useEffect);
         addItem(item);
     }
@@ -110,26 +110,30 @@ public class ItemManager {
         return maxItemId;
     }
 
-    private void addItem(Item item) {
+    public void addItem(Item item) {
         items.remove(item);
         items.add(item);
         checkMaxQueueId();
         System.out.format("New Add item:%s\n", item);
     }
 
-    private void deleteItem(Item item) {
-        items.remove(item);
+    private boolean deleteItem(Item item) {
+        return items.remove(item);
     }
 
-    public List<Item> getItems() {
+    List<Item> getItems() {
         return items;
     }
 
-    public void operateItem(ItemOperateType operateType, Item item) {
+    public int currItemNums() {
+        return items.size();
+    }
+
+    void operateItem(ItemOperateType operateType, Item item) {
         operateItem(operateType, item, 1);
     }
 
-    public void operateItem(ItemOperateType operateType, Item item, int operateParam) {
+    private void operateItem(ItemOperateType operateType, Item item, int operateParam) {
         if (!items.contains(item)) {
             System.out.format("Item not exist:%s\n", item);
         } else {
@@ -159,17 +163,18 @@ public class ItemManager {
         }
     }
 
-    public void delItem(Item item) {
-        deleteItem(item);
+    public boolean delItem(Item item) {
+        return deleteItem(item);
     }
 
-    public void sellItem(Item item, int operateParam) {
+    public boolean sellItem(Item item, int sellNum) {
         int count = item.getCount();
-        int diff = count - operateParam;
+        int diff = count - sellNum;
         if (diff <= 0) {
-            deleteItem(item);
+            return deleteItem(item);
         } else {
             item.setCount(diff);
+            return true;
         }
     }
 

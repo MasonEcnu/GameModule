@@ -19,6 +19,9 @@ public class IDAStarFinder {
     private int weight;
     private boolean trackRecursion;
     private int timeLimit;  // 单位：秒
+    // Used for statistics:
+    // 好像并没有用到
+    private int nodesVisited = 0;
 
     /**
      * Iterative Deeping A Star (IDA*) path-finder.
@@ -80,10 +83,6 @@ public class IDAStarFinder {
             }
         }
     }
-
-    // Used for statistics:
-    // 好像并没有用到
-    private int nodesVisited = 0;
 
     /**
      * Find and return the the path. When an empty array is returned, either
