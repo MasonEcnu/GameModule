@@ -7,11 +7,11 @@ import com.mason.game.activity.constants.ActivityConstants;
  * 活动配置结构
  */
 public class ActivityConfig {
-    private int id;
-    private int level;
-    private int castleLv;
-    private DeviceType deviceType;
-    private PlatType platType;
+    private final int id;
+    private final int level;
+    private final int castleLv;
+    private final DeviceType deviceType;
+    private final PlatType platType;
 
     public ActivityConfig(int id) {
         this.id = id;

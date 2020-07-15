@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ActivityPlayerManager {
 
-    private List<ActivityPlayer> players = Lists.newArrayList();
+    private final List<ActivityPlayer> players = Lists.newArrayList();
 
     public ActivityPlayerManager() {
         for (int i = 1; i <= ActivityConstants.ACTIVITY_PLAYER_MAX_NUM; i++) {

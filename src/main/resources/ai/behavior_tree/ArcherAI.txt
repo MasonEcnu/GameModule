@@ -1,0 +1,175 @@
+{
+	"rootId":1,
+	"composites":{
+		"1":[2,3,4,5],
+		"2":[7,8],
+		"3":[10,21,9,11],
+		"4":[13,22,14,19,15],
+		"5":[16,17,20,18]
+	},
+	"decorators":{
+		"7":9,
+		"10":12
+	},
+	"sharedVariables":{
+		
+	},
+	"tasks":
+	[
+		{
+			"id":1,
+			"taskType":2,
+			"className":"Selector"
+		},
+		{
+			"id":2,
+			"taskType":2,
+			"className":"Sequence"
+		},
+		{
+			"id":3,
+			"taskType":2,
+			"className":"Sequence"
+		},
+		{
+			"id":4,
+			"taskType":2,
+			"className":"Sequence"
+		},
+		{
+			"id":5,
+			"taskType":2,
+			"className":"Sequence"
+		},
+		{
+			"id":6,
+			"taskType":1,
+			"className":"Wait",
+			"param":{
+				
+			}
+		},
+		{
+			"id":7,
+			"taskType":2,
+			"className":"Inverter"
+		},
+		{
+			"id":8,
+			"taskType":1,
+			"className":"AliveSearchTarget",
+			"param":{
+				
+			}
+		},
+		{
+			"id":9,
+			"taskType":1,
+			"className":"IsHaveLockTarget",
+			"param":{
+				
+			}
+		},
+		{
+			"id":10,
+			"taskType":2,
+			"className":"Inverter"
+		},
+		{
+			"id":11,
+			"taskType":1,
+			"className":"Move",
+			"param":{
+				
+			}
+		},
+		{
+			"id":12,
+			"taskType":1,
+			"className":"ShootInRange",
+			"param":{
+				
+			}
+		},
+		{
+			"id":13,
+			"taskType":1,
+			"className":"AttackInRange",
+			"param":{
+				
+			}
+		},
+		{
+			"id":14,
+			"taskType":1,
+			"className":"CanAttack",
+			"param":{
+				
+			}
+		},
+		{
+			"id":15,
+			"taskType":1,
+			"className":"Attack",
+			"param":{
+				
+			}
+		},
+		{
+			"id":16,
+			"taskType":1,
+			"className":"ShootInRange",
+			"param":{
+				
+			}
+		},
+		{
+			"id":17,
+			"taskType":1,
+			"className":"CanShoot",
+			"param":{
+				
+			}
+		},
+		{
+			"id":18,
+			"taskType":1,
+			"className":"Shoot",
+			"param":{
+				
+			}
+		},
+		{
+			"id":19,
+			"taskType":1,
+			"className":"IsHaveLockTarget",
+			"param":{
+				
+			}
+		},
+		{
+			"id":20,
+			"taskType":1,
+			"className":"IsHaveLockTarget",
+			"param":{
+				
+			}
+		},
+		{
+			"id":21,
+			"taskType":1,
+			"className":"NotDefSiege",
+			"param":{
+				
+			}
+		},
+		{
+			"id":22,
+			"taskType":1,
+			"className":"NotDefSiege",
+			"param":{
+				
+			}
+		}
+	]
+}

@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ActivityConfManager {
 
-    private List<ActivityConfig> configs = Lists.newArrayList();
+    private final List<ActivityConfig> configs = Lists.newArrayList();
 
     public ActivityConfManager() {
         for (int i = 1; i <= ActivityConstants.ACTIVITY_CONFIG_MAX_NUM; i++) {

@@ -11,12 +11,12 @@ import com.mason.game.utils.RandomUtil;
  * 活动玩家结构
  */
 public class ActivityPlayer {
-    private String name;
-    private int id;
-    private int level;
-    private int castleLv;
-    private DeviceType deviceType;
-    private PlatType platType;
+    private final String name;
+    private final int id;
+    private final int level;
+    private final int castleLv;
+    private final DeviceType deviceType;
+    private final PlatType platType;
 
     public ActivityPlayer(int id) {
         this.name = "ActivityPlayer-" + id;
