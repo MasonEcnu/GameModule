@@ -1,11 +1,12 @@
 package com.mason.practice.file
 
+import com.alibaba.fastjson.JSON
 import java.io.File
 import java.util.*
-import java.util.concurrent.ExecutionException
 import java.util.concurrent.ForkJoinPool
 import java.util.concurrent.ForkJoinTask
 import java.util.concurrent.RecursiveTask
+import kotlin.system.exitProcess
 
 
 /**
@@ -27,17 +28,21 @@ val IGNORE_NAME = hashSetOf(
     "demo"
 )
 
-fun main() {
-    val basePath = "F:\\Musics\\源文件\\飞儿乐团"
-    val baseDic = File(basePath)
-    val targetPath = "F:\\Musics\\Test"
+fun main(args: Array<String>) {
+    checkInputParam(args)
+
+    val sourcePath = args[0]
+    val targetPath = args[1]
     // 清除目标路径下的文件
     clearTargetPath(targetPath)
-    println("baseDic:${baseDic.absolutePath}")
+    val sourceDic = File(sourcePath)
+
+    println("源文件路径:${sourceDic.absolutePath}")
     val fileNameSet = hashSetOf<String>()
     val filePathSet = hashSetOf<File>()
     // 读取全文件路径
-    readDic(baseDic, targetPath, fileNameSet, filePathSet)
+    readDic(sourceDic, targetPath, fileNameSet, filePathSet)
+
     val fileList = filePathSet.toList()
     println("源文件总数：${fileList.size}")
     val startTime = System.currentTimeMillis()
@@ -48,7 +53,29 @@ fun main() {
     println("复制文件结束，耗时：${(endTime - startTime) / 1000}秒")
 }
 
-fun clearTargetPath(targetPath: String) {
+
+private fun checkInputParam(args: Array<String>) {
+    if (args.size != 2) {
+        println("参数格式:源文件夹路径 目标文件夹路径，支持复制的文件格式：${JSON.toJSONString(MUSIC_TYPE)}")
+        exitProcess(0)
+    }
+    val sourcePath = args[0]
+    val targetPath = args[1]
+
+    val tempSourceFile = File(sourcePath)
+    val tempTargetFile = File(targetPath)
+    if (!tempSourceFile.isDirectory) {
+        println("源文件夹路径：$sourcePath，不是文件夹")
+        exitProcess(0)
+    }
+
+    if (!tempTargetFile.isDirectory) {
+        println("目标文件夹路径：$targetPath，不是文件夹")
+        exitProcess(0)
+    }
+}
+
+private fun clearTargetPath(targetPath: String) {
     val file = File(targetPath)
     if (!file.exists()) { //判断是否待删除目录是否存在
         System.err.println("The dir are not exists!")
@@ -97,9 +124,7 @@ fun copyFileWithForkJoin(files: List<File>, targetPath: String, prefix: String =
     try {
         val res = result.get()
         println("复制文件总数：$res")
-    } catch (e: InterruptedException) {
-        e.printStackTrace()
-    } catch (e: ExecutionException) {
+    } catch (e: Exception) {
         e.printStackTrace()
     }
 }
@@ -132,7 +157,7 @@ class FileCopyTask(
     }
 }
 
-fun handleFileName(file: File, prefix: String): String {
+private fun handleFileName(file: File, prefix: String): String {
     return if (prefix.isNotEmpty()) {
         if (file.name[0].isNumeric()) {
             val tempFileName = file.name.substring(2).trim()
@@ -149,7 +174,7 @@ fun handleFileName(file: File, prefix: String): String {
     }
 }
 
-fun readDic(
+private fun readDic(
     file: File,
     targetPath: String,
     fileNameSet: HashSet<String>,
@@ -175,4 +200,4 @@ fun readDic(
 
 fun String.isNumeric(): Boolean = toCharArray().all { Character.isDigit(it) }
 
-fun Char.isNumeric(): Boolean = Character.isDigit(this)
+private fun Char.isNumeric(): Boolean = Character.isDigit(this)
