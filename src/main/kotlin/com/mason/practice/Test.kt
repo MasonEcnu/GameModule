@@ -132,6 +132,7 @@ fun showQQ() {
 }
 
 fun showDiffSid(sidStr: String) {
+    println("Hello World!")
     val sidSet = hashSetOf<String>()
     sidStr.split("\n").forEach {
         sidSet.add(it.trim())
